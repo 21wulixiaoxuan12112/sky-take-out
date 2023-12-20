@@ -22,4 +22,8 @@ public interface EmilsService{
     void startOrStop(Integer state, Integer id);
 //    反显
     Emils getById(Long id);
+
+    void deleteById(Long id);
+
+//    void update(EmilsDTO emilsDTO);
 }

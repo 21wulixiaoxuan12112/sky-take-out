@@ -77,7 +77,18 @@ public class EmilsServiceImpl implements EmilsService {
     @Override
     public Emils getById(Long id) {
 //     select mailUser,mailPassword,state,createTime,updateTime for emils where id =#{id}
-       Emils emils = emilsMapper.getById(id);
-       return emils;
+        Emils emils = emilsMapper.getById(id);
+        return emils;
     }
+
+    @Override
+    public void deleteById(Long id) {
+        emilsMapper.deleteById(id);
+    }
+
+//    @Override
+//    public void update(EmilsDTO emilsDTO) {
+//        Emils emils = new Emils();
+//        BeanUtils
+//    }
 }

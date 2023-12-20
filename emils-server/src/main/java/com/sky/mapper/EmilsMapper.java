@@ -3,10 +3,7 @@ package com.sky.mapper;
 import com.github.pagehelper.Page;
 import com.sky.dto.EmilsPageQueryDTO;
 import com.sky.entity.Emils;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 /**
  * @author zy
@@ -22,7 +19,7 @@ public interface EmilsMapper {
     /*
      * 新增邮箱
      * */
-    @Insert("insert into email (mailUser,mailPassword,state,create_time, update_time) " + "values " + "(#{mailUser},#{mailPassword},#{state},#{createTime},#{updateTime})")
+    @Insert("insert into email (mail_user,mail_password,state,create_time, update_time) values (#{mailUser},#{mailPassword},#{state},#{createTime},#{updateTime})")
     void insert(Emils emils);
 
     //  修改邮箱状态
@@ -30,6 +27,10 @@ public interface EmilsMapper {
     void update(Emils emils);
 
     //    反显
-    @Select("select mailUser,mailPassword,state,createTime,updateTime for email where id =#{id}")
+    @Select("select mail_user,mail_password,state,create_time,update_time from email where id = #{id}")
     Emils getById(Long id);
+
+    //删除
+    @Delete("delete from email where id=#{id} ")
+    void deleteById(Long id);
 }

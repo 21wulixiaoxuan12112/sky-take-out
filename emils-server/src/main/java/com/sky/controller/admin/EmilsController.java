@@ -66,6 +66,7 @@ public class EmilsController {
         emilsService.startOrStop(state,id);
         return Result.success();
     }
+    //TODO
     /**
      * 反显
      * @param id
@@ -77,4 +78,23 @@ public class EmilsController {
         Emils emils = emilsService.getById(id);
         return Result.success(emils);
     }
+//    /**
+//     * 编辑邮箱信息
+//     * @param emilsDTO
+//     * @return
+//     */
+//    @PutMapping
+//    @ApiOperation("编辑邮箱信息")
+//    public Result update(@RequestBody EmilsDTO emilsDTO){
+//        log.info("编辑邮箱信息：{}", emilsDTO);
+//        emilsService.update(emilsDTO);
+//        return Result.success();
+//    }
+    @DeleteMapping("/{id}")
+    @ApiOperation("删除")
+    public Result<Emils> deleteById(@PathVariable Long id){
+        emilsService.deleteById(id);
+        return Result.success();
+    }
+
 }
