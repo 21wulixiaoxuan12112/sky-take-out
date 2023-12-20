@@ -34,7 +34,7 @@ public class EmilsServiceImpl implements EmilsService {
     public void save(EmilsDTO emilsDTO) {
         Emils emils = new Emils();
         BeanUtils.copyProperties(emilsDTO, emils);
-
+//
         emils.setState(StatusConstant.DISABLE);
 
         emils.setMailPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
