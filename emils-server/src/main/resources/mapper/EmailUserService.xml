@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.HongShen.mapper.EmilsMapper">
+    <update id="update" parameterType="com.HongShen.entity.Emils">
+        update email
+        <set>
+            <if test="mailUser != null">mail_user = #{mailUser},</if>
+            <if test="mailPassword != null">mail_password = #{mailPassword},</if>
+            <if test="state != null">state = #{state},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="pageQuery" resultType="com.HongShen.entity.Emils">
+        select id,mail_user,mail_password,state,create_time,update_time from email
+        <where>
+            <if test="mailUser != null and mailUser != ''">
+                and mailUser like concat('%',#{mail_user},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>
