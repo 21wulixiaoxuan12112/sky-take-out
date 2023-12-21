@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * 会员表 Mapper 接口
  * </p>
  *
- * @author author
+ * @author zy
  * @since 2023-12-21
  */
 public interface EmailUserMapper extends BaseMapper<EmailUser> {
