@@ -49,7 +49,7 @@ public class EmilsController {
      * @param emilsPageQueryDTO
      * @return
      */
-    //  TODO
+
     @GetMapping("/page")
     @ApiOperation("邮箱分页查询")
     public Result<PageResult> page(EmilsPageQueryDTO emilsPageQueryDTO) {
@@ -65,7 +65,6 @@ public class EmilsController {
      * @param id
      * @return
      */
-    //  TODO
     @PostMapping("/state/{state}")
     @ApiOperation("启用禁用邮箱账号")
     public Result startOrStop(@PathVariable Integer state, Integer id) {

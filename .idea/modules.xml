@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/emils-common/emils-common.iml" filepath="$PROJECT_DIR$/emils-common/emils-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/emils-pojo/emils-pojo.iml" filepath="$PROJECT_DIR$/emils-pojo/emils-pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/emils-server/emils-server.iml" filepath="$PROJECT_DIR$/emils-server/emils-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sky-take-out.iml" filepath="$PROJECT_DIR$/sky-take-out.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emils-system.iml" filepath="$PROJECT_DIR$/emils-system.iml" />
     </modules>
   </component>
 </project>
