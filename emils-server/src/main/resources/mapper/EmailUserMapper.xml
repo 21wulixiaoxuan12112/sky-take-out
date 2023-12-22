@@ -2,4 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.HongShen.mapper.EmailUserMapper">
 
+    <select id="pageQuery" resultType="com.HongShen.entity.EmailUser"
+           >
+        select id,username,password,login_time,create_time,update_time,token,status from email_user
+        <where>
+            <if test="id != null and id != ''">
+                and id like concat('%',#{id},'%')
+            </if>
+            <if test="username != null and username != ''">
+                and username like concat('%',#{username},'%')
+            </if>
+            <if test="status != null and status != ''">
+                and status like concat('%',#{status},'%')
+            </if>
+            <if test="createTime != null">
+                and create_time &gt;= #{beginTime}
+            </if>
+
+        </where>
+        order by create_time desc
+    </select>
 </mapper>

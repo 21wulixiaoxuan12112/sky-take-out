@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -38,13 +40,13 @@ public class EmailUser implements Serializable {
     private String password;
 
     @ApiModelProperty(value = "登录时间")
-    private Long logintime;
+    private LocalDateTime loginTime;
 
     @ApiModelProperty(value = "创建时间")
-    private Long createtime;
+    private LocalDateTime createTime;
 
     @ApiModelProperty(value = "更新时间")
-    private Long updatetime;
+    private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "Token")
     private String token;
@@ -52,8 +54,6 @@ public class EmailUser implements Serializable {
     @ApiModelProperty(value = "状态")
     private String status;
 
-    @ApiModelProperty(value = "验证")
-    private String verification;
 
 
 }

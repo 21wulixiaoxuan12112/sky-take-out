@@ -3,6 +3,7 @@ package com.HongShen.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @author zy
@@ -12,12 +13,17 @@ import java.io.Serializable;
 public class EmilsPageQueryDTO implements Serializable {
     //    邮箱名
     private String mailUser;
+    //主键
+    private Integer id;
 
+    private LocalDateTime createTime;
+
+    private LocalDateTime updateTime;
     //页码
-    private int page;
+    private Integer page;
 
     //每页显示记录数
-    private int pageSize;
+    private Integer pageSize;
 
 
 }

@@ -1,6 +1,10 @@
 package com.HongShen.service;
 
+import com.HongShen.dto.EmilsUserDTO;
+import com.HongShen.dto.EmilsUserPageQueryDTO;
 import com.HongShen.entity.EmailUser;
+import com.HongShen.entity.Emils;
+import com.HongShen.result.PageResult;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author author
  * @since 2023-12-21
  */
-public interface EmailUserService extends IService<EmailUser> {
+public interface EmailUserService {
 
+    void save(EmilsUserDTO emilsUserDTO);
+
+    PageResult pageQuery(EmilsUserPageQueryDTO emilsUserPageQueryDTO);
+
+    Emils getById(Long id);
 }

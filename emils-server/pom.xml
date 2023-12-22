@@ -10,7 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>emils-server</artifactId>
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.sky</groupId>
             <artifactId>emils-common</artifactId>
