@@ -27,7 +27,7 @@ public class EmilsVO implements Serializable {
 
     @ApiModelProperty("邮箱名")
     private String mailUser;
-
+//
     @ApiModelProperty("密码")
     private String mailPassword;
 
