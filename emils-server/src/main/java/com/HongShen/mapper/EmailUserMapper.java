@@ -25,5 +25,5 @@ public interface EmailUserMapper {
     Page<EmailUser> pageQuery(EmilsUserPageQueryDTO emilsUserPageQueryDTO);
 
     @Select("select username,password,login_time,create_time,update_time,status from email_user where id = #{id}")
-    Emils getById(Long id);
+    EmailUser getById(Long id);
 }

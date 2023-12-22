@@ -21,5 +21,5 @@ public interface EmailUserService {
 
     PageResult pageQuery(EmilsUserPageQueryDTO emilsUserPageQueryDTO);
 
-    Emils getById(Long id);
+    EmailUser getById(Long id);
 }

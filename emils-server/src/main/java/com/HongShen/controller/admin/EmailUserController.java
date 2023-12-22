@@ -4,6 +4,7 @@ package com.HongShen.controller.admin;
 import com.HongShen.dto.EmilsDTO;
 import com.HongShen.dto.EmilsUserDTO;
 import com.HongShen.dto.EmilsUserPageQueryDTO;
+import com.HongShen.entity.EmailUser;
 import com.HongShen.entity.Emils;
 import com.HongShen.result.PageResult;
 import com.HongShen.result.Result;
@@ -53,8 +54,8 @@ public class EmailUserController {
     //    反显
     @GetMapping("/{id}")
     @ApiOperation("反显")
-    public Result<Emils> getById(@PathVariable Long id) {
-        Emils emils = emailUserService.getById(id);
-        return Result.success(emils);
+    public Result<EmailUser> getById(@PathVariable Long id) {
+        EmailUser emailUser = emailUserService.getById(id);
+        return Result.success(emailUser);
     }
 }

@@ -31,7 +31,8 @@ public class EmailUserServiceImpl implements EmailUserService {
     private EmailUserMapper emailUserMapper;
 
     @Override
-    public Emils getById(Long id) {
+    public EmailUser getById(Long id) {
+//        return emailUserMapper.getById(id);
         return emailUserMapper.getById(id);
     }
 
@@ -54,10 +55,10 @@ public class EmailUserServiceImpl implements EmailUserService {
     @Override
     public PageResult pageQuery(EmilsUserPageQueryDTO emilsUserPageQueryDTO) {
 //        开启分页
-        PageHelper.startPage(emilsUserPageQueryDTO.getPage(),emilsUserPageQueryDTO.getPageSize());
-        Page<EmailUser> page =emailUserMapper.pageQuery(emilsUserPageQueryDTO);
+        PageHelper.startPage(emilsUserPageQueryDTO.getPage(), emilsUserPageQueryDTO.getPageSize());
+        Page<EmailUser> page = emailUserMapper.pageQuery(emilsUserPageQueryDTO);
         long total = page.getTotal();
         List<EmailUser> result = page.getResult();
-        return new PageResult(total,result);
+        return new PageResult(total, result);
     }
 }
