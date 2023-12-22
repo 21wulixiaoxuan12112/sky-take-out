@@ -47,7 +47,6 @@ public class EmilsServiceImpl implements EmilsService {
 
     }
 
-    //  TODO
     //分页
     @Override
     public PageResult pageQuery(EmilsPageQueryDTO emilsPageQueryDTO) {
@@ -59,11 +58,9 @@ public class EmilsServiceImpl implements EmilsService {
 
         long total = page.getTotal();
         List<Emils> records = page.getResult();
-        PageResult pageResult = new PageResult(total, records);
-        return pageResult;
+        return new PageResult(total, records);
     }
 
-    //  TODO
     //修改邮箱状态
     @Override
     public void startOrStop(Integer state, Integer id) {
