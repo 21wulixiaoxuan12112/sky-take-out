@@ -5,9 +5,7 @@ import com.HongShen.entity.EmailUser;
 import com.HongShen.entity.Emils;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.pagehelper.Page;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 /**
  * <p>
@@ -26,4 +24,12 @@ public interface EmailUserMapper {
 
     @Select("select username,password,login_time,create_time,update_time,status from email_user where id = #{id}")
     EmailUser getById(Long id);
+
+    @Delete("delete from email_user where id=#{id} ")
+    void deleteById(Long id);
+
+    void update(EmailUser emailUser);
+
+    @Update("update email_user set status = #{status} where id=#{id}")
+    void startOrStop(EmailUser emailUser);
 }

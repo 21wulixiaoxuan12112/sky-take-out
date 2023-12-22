@@ -58,4 +58,26 @@ public class EmailUserController {
         EmailUser emailUser = emailUserService.getById(id);
         return Result.success(emailUser);
     }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation("删除")
+    public Result<EmailUser> deleteById(@PathVariable Long id) {
+        emailUserService.deleteById(id);
+        return Result.success();
+    }
+    @PutMapping
+    @ApiOperation("编辑会员信息")
+    public Result update(@RequestBody EmilsUserDTO emilsUserDTO) {
+        log.info("编辑会员信息：{}", emilsUserDTO);
+        emailUserService.update(emilsUserDTO);
+        return Result.success();
+    }
+    @PostMapping("/state/{state}")
+    @ApiOperation("启用禁用会员账号")
+    public Result startOrStop(@PathVariable String status, Integer id) {
+        log.info("启用禁用会员账号：{},{}", status, id);
+        emailUserService.startOrStop(status, id);
+        return Result.success();
+    }
+
 }

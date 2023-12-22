@@ -53,6 +53,31 @@ public class EmailUserServiceImpl implements EmailUserService {
     }
 
     @Override
+    public void startOrStop(String status, Integer id) {
+        //update emils set state = ? where id=?
+       EmailUser emailUser = EmailUser.builder()
+                .status(status)
+                .id(id)
+                .build();
+        emailUserMapper.startOrStop(emailUser);
+    }
+
+    @Override
+    public void update(EmilsUserDTO emilsUserDTO) {
+        //-- 修改数据
+        //update email set mail_user=#{mailUser},mail_password=#{mailPassword},update_time=#{updateTime} where id=#{id}
+       EmailUser emailUser = new EmailUser();
+        BeanUtils.copyProperties(emilsUserDTO, emailUser);
+        emailUser.setUpdateTime(LocalDateTime.now());
+        emailUserMapper.update(emailUser);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        emailUserMapper.deleteById(id);
+    }
+
+    @Override
     public PageResult pageQuery(EmilsUserPageQueryDTO emilsUserPageQueryDTO) {
 //        开启分页
         PageHelper.startPage(emilsUserPageQueryDTO.getPage(), emilsUserPageQueryDTO.getPageSize());

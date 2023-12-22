@@ -22,4 +22,10 @@ public interface EmailUserService {
     PageResult pageQuery(EmilsUserPageQueryDTO emilsUserPageQueryDTO);
 
     EmailUser getById(Long id);
+
+    void deleteById(Long id);
+
+    void update(EmilsUserDTO emilsUserDTO);
+
+    void startOrStop(String status, Integer id);
 }
