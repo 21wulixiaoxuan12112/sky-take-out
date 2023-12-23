@@ -19,6 +19,14 @@ public class EmilsPageQueryDTO implements Serializable {
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
+
+    private String createbeginTime;
+
+    private LocalDateTime createndTime;
+
+    private LocalDateTime updatebeginTime;
+
+    private LocalDateTime updatendTime;
     //页码
     private Integer page;
 

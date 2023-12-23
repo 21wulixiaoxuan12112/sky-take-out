@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2023-12-21
  */
 @RestController
-@RequestMapping("/email-user")
+@RequestMapping("/admin/emils/user")
 @Slf4j
 @Api(tags = "会员相关接口")
 public class EmailUserController {
@@ -36,14 +36,14 @@ public class EmailUserController {
 
     @PostMapping
     @ApiOperation("新增会员")
-    public Result save(@RequestBody EmilsUserDTO emilsUserDTO) {
+    public Result saveUser(@RequestBody EmilsUserDTO emilsUserDTO) {
         log.info("新增会员：{}", emilsUserDTO);
         emailUserService.save(emilsUserDTO);
         return Result.success();
     }
 
     //    用户分页
-    @GetMapping("/page")
+    @GetMapping("/pageUser")
     @ApiOperation("用户分页")
     public Result<PageResult> page(EmilsUserPageQueryDTO emilsUserPageQueryDTO) {
         log.info("分页用户数据{}", emilsUserPageQueryDTO);
@@ -67,7 +67,7 @@ public class EmailUserController {
     }
     @PutMapping
     @ApiOperation("编辑会员信息")
-    public Result update(@RequestBody EmilsUserDTO emilsUserDTO) {
+    public Result updateUser(@RequestBody EmilsUserDTO emilsUserDTO) {
         log.info("编辑会员信息：{}", emilsUserDTO);
         emailUserService.update(emilsUserDTO);
         return Result.success();

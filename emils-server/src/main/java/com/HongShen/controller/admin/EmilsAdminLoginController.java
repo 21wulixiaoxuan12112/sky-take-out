@@ -64,7 +64,7 @@ public class EmilsAdminLoginController {
                 jwtProperties.getAdminSecretKey(),
                 jwtProperties.getAdminTtl(),
                 claims);
-
+        log.info("token："+token);
         EmilAdminLoginVO emilAdminLoginVO = EmilAdminLoginVO.builder()
                 .id(emailAdmin.getId())
                 .userName(emailAdmin.getUsername())
