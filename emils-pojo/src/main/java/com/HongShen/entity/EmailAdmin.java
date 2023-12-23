@@ -3,8 +3,10 @@ package com.HongShen.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -25,7 +27,7 @@ import lombok.experimental.Accessors;
 @Builder
 @AllArgsConstructor
 @TableName("email_admin")
-@ApiModel(value="EmailAdmin对象", description="管理员表")
+@ApiModel(value = "EmailAdmin对象", description = "管理员表")
 public class EmailAdmin implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,16 +47,15 @@ public class EmailAdmin implements Serializable {
 
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createtime;
-//
+    //
     @ApiModelProperty(value = "更新时间")
     private LocalDateTime updatetime;
-
+    //
     @ApiModelProperty(value = "Session标识")
     private String token;
 
     @ApiModelProperty(value = "状态")
     private Integer status;
-
 
 
 }
