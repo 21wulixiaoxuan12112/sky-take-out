@@ -1,12 +1,10 @@
 package com.HongShen.service;
 
 import com.HongShen.dto.EmilsUserDTO;
-import com.HongShen.dto.EmilsUserLoginDTO;
+import com.HongShen.dto.Login.EmilsUserLoginDTO;
 import com.HongShen.dto.EmilsUserPageQueryDTO;
 import com.HongShen.entity.EmailUser;
-import com.HongShen.entity.Emils;
 import com.HongShen.result.PageResult;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>

@@ -1,13 +1,13 @@
 package com.HongShen.controller.admin;
 
 import com.HongShen.constant.JwtClaimsConstant;
-import com.HongShen.dto.EmilsUserLoginDTO;
+import com.HongShen.dto.Login.EmilsUserLoginDTO;
 import com.HongShen.entity.EmailUser;
 import com.HongShen.properties.JwtProperties;
 import com.HongShen.result.Result;
 import com.HongShen.service.EmailUserService;
 import com.HongShen.utils.JwtUtil;
-import com.HongShen.vo.EmilUserLoginVO;
+import com.HongShen.vo.Login.EmilUserLoginVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user/emils")
 @Slf4j
-@Api(tags = "管理用户登录接口")
+@Api(tags = "用户登录接口")
 public class EmilsLoginController {
     @Autowired
     private EmailUserService emailUserService;
@@ -62,7 +62,7 @@ public class EmilsLoginController {
 
        EmilUserLoginVO employeeLoginVO = EmilUserLoginVO.builder()
                 .id(emailUser.getId())
-                .userName( emailUser.getUsername())
+                .userName(emailUser.getUsername())
                 .token(token)
                 .build();
 

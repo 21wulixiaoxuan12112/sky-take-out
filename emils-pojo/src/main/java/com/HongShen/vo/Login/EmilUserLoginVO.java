@@ -1,4 +1,4 @@
-package com.HongShen.vo;
+package com.HongShen.vo.Login;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -25,8 +25,8 @@ public class EmilUserLoginVO  implements Serializable {
     @ApiModelProperty("用户名")
     private String userName;
 
-    @ApiModelProperty("姓名")
-    private String name;
+//    @ApiModelProperty("姓名")
+//    private String name;
 
     @ApiModelProperty("jwt令牌")
     private String token;
