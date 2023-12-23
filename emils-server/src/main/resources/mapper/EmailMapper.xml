@@ -22,13 +22,6 @@
             <if test="id != null and id != ''">
                 and id =#{id}
             </if>
---              private LocalDateTime createbeginTime;
-
---             private LocalDateTime createndTime;
---
---             private LocalDateTime updatebeginTime;
---
---             private LocalDateTime updatendTime;
             <if test="createbeginTime != null and createndTime == null">
                 and create_time =#{createbeginTime}
             </if>

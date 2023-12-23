@@ -59,7 +59,7 @@ public class EmilsAdminLoginController {
 
         //登录成功后，生成jwt令牌
         Map<String, Object> claims = new HashMap<>();
-        claims.put(JwtClaimsConstant.USER_ID, emailAdmin.getId());
+        claims.put(JwtClaimsConstant.EMP_ID, emailAdmin.getId());
         String token = JwtUtil.createJWT(
                 jwtProperties.getAdminSecretKey(),
                 jwtProperties.getAdminTtl(),
