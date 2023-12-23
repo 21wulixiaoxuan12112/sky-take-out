@@ -6,9 +6,9 @@
         <set>
             <if test="username != null">username = #{username},</if>
             <if test="password != null">password = #{password},</if>
-            <if test="loginTime != null">login_time = #{loginTime},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="logintime != null">logintime = #{logintime},</if>
+            <if test="createtime != null">createtime = #{createtime},</if>
+            <if test="updatetime != null">updatetime = #{updatetime},</if>
             <if test="token != null">token = #{token},</if>
             <if test="status != null">status = #{status}</if>
         </set>

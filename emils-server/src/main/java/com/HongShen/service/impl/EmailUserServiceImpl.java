@@ -53,7 +53,7 @@ public class EmailUserServiceImpl implements EmailUserService {
 
         emailUser.setCreateTime(LocalDateTime.now());
 //        emailUser.setUpdatetime(LocalDateTime.now());
-        emailUser.setStatus(0);
+        emailUser.setStatus(1);
         emailUserMapper.insert(emailUser);
     }
 

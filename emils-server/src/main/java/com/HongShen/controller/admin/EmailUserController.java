@@ -37,7 +37,7 @@ public class EmailUserController {
     @PostMapping
     @ApiOperation("新增会员")
     public Result save(@RequestBody EmilsUserDTO emilsUserDTO) {
-        log.info("新增邮箱：{}", emilsUserDTO);
+        log.info("新增会员：{}", emilsUserDTO);
         emailUserService.save(emilsUserDTO);
         return Result.success();
     }

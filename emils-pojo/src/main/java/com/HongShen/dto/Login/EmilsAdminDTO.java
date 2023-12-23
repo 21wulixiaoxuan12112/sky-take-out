@@ -1,4 +1,4 @@
-package com.HongShen.dto;
+package com.HongShen.dto.Login;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 
 /**
  * @author zy
- * @date 2023/12/21 19:01
+ * @date 2023/12/23 18:10
  */
 @Data
-public class EmilsUserDTO implements Serializable {
+public class EmilsAdminDTO  implements Serializable {
     @ApiModelProperty(value = "ID")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
@@ -25,13 +25,13 @@ public class EmilsUserDTO implements Serializable {
     private String password;
 
     @ApiModelProperty(value = "登录时间")
-    private LocalDateTime loginTime;
+    private LocalDateTime logintime;
 
     @ApiModelProperty(value = "创建时间")
-    private LocalDateTime createTime;
+    private LocalDateTime createtime;
 
     @ApiModelProperty(value = "更新时间")
-    private LocalDateTime updateTime;
+    private LocalDateTime updatetime;
 
     @ApiModelProperty(value = "Token")
     private String token;

@@ -2,15 +2,15 @@ package com.HongShen.service.impl;
 
 import com.HongShen.constant.MessageConstant;
 import com.HongShen.constant.StatusConstant;
+import com.HongShen.dto.Login.EmilsAdminDTO;
 import com.HongShen.dto.Login.EmilsAdminLoginDTO;
 import com.HongShen.entity.EmailAdmin;
-import com.HongShen.entity.EmailUser;
 import com.HongShen.exception.AccountLockedException;
 import com.HongShen.exception.AccountNotFoundException;
 import com.HongShen.exception.PasswordErrorException;
 import com.HongShen.mapper.EmailAdminMapper;
-import com.HongShen.mapper.EmailUserMapper;
 import com.HongShen.service.EmailAdminService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,6 @@ public class EmsilAdminServiceImpl implements EmailAdminService {
         String password = emilsAdminLoginDTO.getPassword();
 
         //1、根据用户名查询数据库中的数据
-//        Employee employee = employeeMapper.getByUsername(username);
         EmailAdmin emailAdmin = emailAdminMapper.getByUserName(username);
         //2、处理各种异常情况（用户名不存在、密码不对、账号被锁定）
         if (emailAdmin == null) {
@@ -63,5 +62,21 @@ public class EmsilAdminServiceImpl implements EmailAdminService {
 
         //3、返回实体对象
         return emailAdmin;
+    }
+
+    @Override
+    public void save(EmilsAdminDTO emilsAdminDTO) {
+        EmailAdmin emailAdmin = new EmailAdmin();
+        BeanUtils.copyProperties(emilsAdminDTO, emailAdmin);
+//        Spring Security加盐
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        //        数据库密码
+        String finalPassword = passwordEncoder.encode(emilsAdminDTO.getPassword());
+        emailAdmin.setPassword(finalPassword);
+
+        emailAdmin.setCreatetime(LocalDateTime.now());
+//        emailUser.setUpdatetime(LocalDateTime.now());
+        emailAdmin.setStatus(1);
+        emailAdminMapper.insert(emailAdmin);
     }
 }
