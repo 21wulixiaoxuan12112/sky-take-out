@@ -72,7 +72,7 @@ public class EmailUserController {
         emailUserService.update(emilsUserDTO);
         return Result.success();
     }
-    @PostMapping("/state/{state}")
+    @PostMapping("/state/{status}")
     @ApiOperation("启用禁用会员账号")
     public Result startOrStop(@PathVariable String status, Integer id) {
         log.info("启用禁用会员账号：{},{}", status, id);

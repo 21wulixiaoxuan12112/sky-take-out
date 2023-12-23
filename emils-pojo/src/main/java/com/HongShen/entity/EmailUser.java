@@ -9,10 +9,7 @@ import java.time.LocalDateTime;
 import com.google.common.util.concurrent.Service;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -28,6 +25,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 @Builder
+@AllArgsConstructor
 @TableName("email_user")
 @ApiModel(value="EmailUser对象", description="会员表")
 public class EmailUser implements Serializable {

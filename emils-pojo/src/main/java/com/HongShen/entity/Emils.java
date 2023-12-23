@@ -2,6 +2,8 @@ package com.HongShen.entity;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +23,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Emils implements Serializable {
 
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String mailUser;
