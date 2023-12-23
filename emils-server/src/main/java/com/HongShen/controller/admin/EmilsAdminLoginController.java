@@ -1,12 +1,21 @@
 package com.HongShen.controller.admin;
 
+/**
+ * @author zy
+ * @date 2023/12/23 17:01
+ */
+
 import com.HongShen.constant.JwtClaimsConstant;
+import com.HongShen.dto.Login.EmilsAdminLoginDTO;
 import com.HongShen.dto.Login.EmilsUserLoginDTO;
+import com.HongShen.entity.EmailAdmin;
 import com.HongShen.entity.EmailUser;
 import com.HongShen.properties.JwtProperties;
 import com.HongShen.result.Result;
+import com.HongShen.service.EmailAdminService;
 import com.HongShen.service.EmailUserService;
 import com.HongShen.utils.JwtUtil;
+import com.HongShen.vo.Login.EmilAdminLoginVO;
 import com.HongShen.vo.Login.EmilUserLoginVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,52 +30,48 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author zy
- * @date 2023/12/22 17:13
- */
-
-/**
- * 员工管理
+ * 管理员账号管理
  */
 @RestController
-@RequestMapping("/user/emils")
+@RequestMapping("/admin/emils")
 @Slf4j
-@Api(tags = "用户登录接口")
-public class EmilsLoginController {
+@Api(tags = "管理员登录接口")
+public class EmilsAdminLoginController {
     @Autowired
-    private EmailUserService emailUserService;
+    private EmailAdminService emailAdminService;
 
     @Autowired
     private JwtProperties jwtProperties;
 
+
     /**
      * 登录
      *
-     * @param emilsUserLoginDTO
+     * @param emilsAdminLoginDTO
      * @return
      */
     @PostMapping("/login")
-    @ApiOperation(value = "用户登录")
-    public Result<EmilUserLoginVO> login(@RequestBody EmilsUserLoginDTO emilsUserLoginDTO) {
-        log.info("用户登录：{}", emilsUserLoginDTO);
+    @ApiOperation(value = "管理员登录")
+    public Result<EmilAdminLoginVO> login(@RequestBody EmilsAdminLoginDTO emilsAdminLoginDTO) {
+        log.info("管理员登录：{}", emilsAdminLoginDTO);
 
-        EmailUser emailUser = emailUserService.login(emilsUserLoginDTO);
+        EmailAdmin emailAdmin = emailAdminService.login(emilsAdminLoginDTO);
 
         //登录成功后，生成jwt令牌
         Map<String, Object> claims = new HashMap<>();
-        claims.put(JwtClaimsConstant.USER_ID, emailUser.getId());
+        claims.put(JwtClaimsConstant.USER_ID, emailAdmin.getId());
         String token = JwtUtil.createJWT(
                 jwtProperties.getAdminSecretKey(),
                 jwtProperties.getAdminTtl(),
                 claims);
 
-       EmilUserLoginVO employeeLoginVO = EmilUserLoginVO.builder()
-                .id(emailUser.getId())
-                .userName(emailUser.getUsername())
+        EmilAdminLoginVO emilAdminLoginVO = EmilAdminLoginVO.builder()
+                .id(emailAdmin.getId())
+                .userName(emailAdmin.getUsername())
                 .token(token)
                 .build();
 
-        return Result.success(employeeLoginVO);
+        return Result.success(emilAdminLoginVO);
     }
 
 
