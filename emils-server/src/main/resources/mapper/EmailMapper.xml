@@ -22,21 +22,21 @@
             <if test="id != null and id != ''">
                 and id =#{id}
             </if>
-            <if test="createbeginTime != null and createndTime == null">
-                and create_time =#{createbeginTime}
-            </if>
-            <if test="createbeginTime != null and createndTime != null">
-                and create_time between #{createbeginTime} and #{createndTime}
-            </if>
-            <!--            <if test="createTime != null">-->
-            <!--               -->
-            <!--            </if>-->
-            <if test="updatebeginTime != null and updatendTime == null">
-                and update_time =#{updatebeginTime}
-            </if>
-            <if test="updatebeginTime != null and updatendTime != null">
-                and update_time between #{updatebeginTime} and #{updatendTime}
-            </if>
+<!--            <if test="createbeginTime != null and createndTime == null">-->
+<!--                and create_time =#{createbeginTime}-->
+<!--            </if>-->
+<!--            <if test="createbeginTime != null and createndTime != null">-->
+<!--                and create_time between #{createbeginTime} and #{createndTime}-->
+<!--            </if>-->
+<!--                        <if test="createTime != null">-->
+<!--                           -->
+<!--                        </if>-->
+<!--            <if test="updatebeginTime != null and updatendTime == null">-->
+<!--                and update_time =#{updatebeginTime}-->
+<!--            </if>-->
+<!--            <if test="updatebeginTime != null and updatendTime != null">-->
+<!--                and update_time between #{updatebeginTime} and #{updatendTime}-->
+<!--            </if>-->
 <!--            <if test="updateTime != null">-->
 <!--                and update_time &lt;= #{endTime}-->
 <!--            </if>-->

@@ -59,8 +59,8 @@ public class EmilsUserLoginController {
                 jwtProperties.getAdminSecretKey(),
                 jwtProperties.getAdminTtl(),
                 claims);
-
-       EmilUserLoginVO employeeLoginVO = EmilUserLoginVO.builder()
+        System.out.println("普通用户token:" + token);
+        EmilUserLoginVO employeeLoginVO = EmilUserLoginVO.builder()
                 .id(emailUser.getId())
                 .userName(emailUser.getUsername())
                 .token(token)
