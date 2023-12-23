@@ -74,7 +74,7 @@ public class EmailUserController {
     }
     @PostMapping("/state/{status}")
     @ApiOperation("启用禁用会员账号")
-    public Result startOrStop(@PathVariable String status, Integer id) {
+    public Result startOrStop(@PathVariable Integer status, Integer id) {
         log.info("启用禁用会员账号：{},{}", status, id);
         emailUserService.startOrStop(status, id);
         return Result.success();

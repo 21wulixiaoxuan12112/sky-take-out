@@ -55,7 +55,7 @@ public class EmailUser implements Serializable {
     private String token;
 
     @ApiModelProperty(value = "状态")
-    private String status;
+    private Integer status;
 
 
 

@@ -1,6 +1,7 @@
 package com.HongShen.service;
 
 import com.HongShen.dto.EmilsUserDTO;
+import com.HongShen.dto.EmilsUserLoginDTO;
 import com.HongShen.dto.EmilsUserPageQueryDTO;
 import com.HongShen.entity.EmailUser;
 import com.HongShen.entity.Emils;
@@ -27,5 +28,7 @@ public interface EmailUserService {
 
     void update(EmilsUserDTO emilsUserDTO);
 
-    void startOrStop(String status, Integer id);
+    void startOrStop(Integer status, Integer id);
+
+   EmailUser login(EmilsUserLoginDTO emilsUserLoginDTO);
 }

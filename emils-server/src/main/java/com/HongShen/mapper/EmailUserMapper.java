@@ -32,4 +32,15 @@ public interface EmailUserMapper {
 
     @Update("update email_user set status = #{status} where id=#{id}")
     void startOrStop(EmailUser emailUser);
+
+    //获取用户姓名
+
+    /**
+     * 根据用户名查询员工
+     * // @param username
+     *
+     * @return
+     */
+    @Select("select * from email_user where username = #{username}")
+    EmailUser getByUserName(String username);
 }

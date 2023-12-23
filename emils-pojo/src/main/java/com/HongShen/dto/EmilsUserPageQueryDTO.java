@@ -20,7 +20,7 @@ public class EmilsUserPageQueryDTO implements Serializable {
 
 
     @ApiModelProperty(value = "状态")
-    private String status;
+    private Integer status;
 
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;

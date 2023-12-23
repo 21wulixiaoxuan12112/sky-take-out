@@ -25,7 +25,7 @@ public class EmilsUserVO implements Serializable {
     private String username;
 
     @ApiModelProperty(value = "状态")
-    private String status;
+    private Integer status;
 
     @ApiModelProperty(value = "登录时间")
     private LocalDateTime loginTime;
