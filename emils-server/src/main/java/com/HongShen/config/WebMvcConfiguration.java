@@ -64,7 +64,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .apiInfo(apiInfo)
                 .select()
                 //指定生成接口需要扫描的包
-                .apis(RequestHandlerSelectors.basePackage("com.HongSHen.controller.admin"))
+                .apis(RequestHandlerSelectors.basePackage("com.HongShen.controller.admin"))
                 .paths(PathSelectors.any())
                 .build();
 
@@ -76,7 +76,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         log.info("准备生成接口文档...");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("虹森邮箱管理项目接口文档")
-                .version("2.0")
+                .version("1.0")
                 .description("虹森邮箱管理项目接口文档")
                 .build();
 
@@ -85,7 +85,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .apiInfo(apiInfo)
                 .select()
                 //指定生成接口需要扫描的包
-                .apis(RequestHandlerSelectors.basePackage("com.HongSHen.controller.user"))
+                .apis(RequestHandlerSelectors.basePackage("com.HongShen.controller.user"))
                 .paths(PathSelectors.any())
                 .build();
 
