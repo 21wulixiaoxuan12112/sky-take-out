@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.HongShen.mapper.AdminTemplateMapper">
+
+    <select id="pageQuery" resultType="com.HongShen.entity.AdminTemplate"
+            parameterType="com.HongShen.dto.admintemplate.AdminTemplatePageQueryDTO">
+        select id,filename,alias,filepath,content,createtime from admin_template
+        <where>
+            <if test="id != null and id != ''">
+                and id like concat('%',#{id},'%')
+            </if>
+            <if test="filename != null and filename != ''">
+                and filename like concat('%',#{filename},'%')
+            </if>
+            <if test="alias != null and alias != ''">
+                and alias like concat('%',#{alias},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>
