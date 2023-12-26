@@ -47,5 +47,6 @@ public class AdminTemplate implements Serializable {
     @ApiModelProperty(value = "模板创建时间 ")
     private LocalDateTime createtime;
 
-
+//    @ApiModelProperty(value = "逻辑删除")
+//    private  Integer deleted;
 }
