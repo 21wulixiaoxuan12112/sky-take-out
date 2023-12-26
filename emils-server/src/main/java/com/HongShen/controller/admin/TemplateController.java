@@ -29,7 +29,7 @@ public class TemplateController {
 
     @PostMapping
     @ApiOperation("新增模板")
-    public Result saveUser(@RequestBody AdminTemplateDTO adminTemplateDTO) throws IOException {
+    public Result saveAdminTemplate(@RequestBody AdminTemplateDTO adminTemplateDTO) throws IOException {
         log.info("新增模板：{}", adminTemplateDTO);
         adminTemplateService.save(adminTemplateDTO);
         return Result.success();
