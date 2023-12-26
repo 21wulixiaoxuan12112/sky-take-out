@@ -1,15 +1,12 @@
 package com.HongShen.controller.admin;
 
 
-import com.HongShen.dto.EmilsDTO;
-import com.HongShen.dto.EmilsUserDTO;
-import com.HongShen.dto.EmilsUserPageQueryDTO;
+import com.HongShen.dto.user.EmilsUserDTO;
+import com.HongShen.dto.user.EmilsUserPageQueryDTO;
 import com.HongShen.entity.EmailUser;
-import com.HongShen.entity.Emils;
 import com.HongShen.result.PageResult;
 import com.HongShen.result.Result;
 import com.HongShen.service.EmailUserService;
-import com.HongShen.service.EmilsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

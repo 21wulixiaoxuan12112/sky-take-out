@@ -1,4 +1,4 @@
-package com.HongShen.dto;
+package com.HongShen.dto.user;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

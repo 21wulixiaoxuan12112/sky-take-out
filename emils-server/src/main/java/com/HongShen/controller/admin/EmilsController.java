@@ -5,8 +5,8 @@ package com.HongShen.controller.admin;
  * @date 2023/12/20 14:19
  */
 
-import com.HongShen.dto.EmilsDTO;
-import com.HongShen.dto.EmilsPageQueryDTO;
+import com.HongShen.dto.email.EmilsDTO;
+import com.HongShen.dto.email.EmilsPageQueryDTO;
 import com.HongShen.entity.Emils;
 import com.HongShen.result.PageResult;
 import com.HongShen.result.Result;

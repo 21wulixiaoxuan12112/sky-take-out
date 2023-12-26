@@ -10,6 +10,7 @@ import com.HongShen.exception.AccountNotFoundException;
 import com.HongShen.exception.PasswordErrorException;
 import com.HongShen.mapper.EmailAdminMapper;
 import com.HongShen.service.EmailAdminService;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,6 +26,9 @@ import java.time.LocalDateTime;
 public class EmsilAdminServiceImpl implements EmailAdminService {
     @Autowired
     private EmailAdminMapper emailAdminMapper;
+
+    //        Spring Security加盐
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public EmailAdmin login(EmilsAdminLoginDTO emilsAdminLoginDTO) {
@@ -68,8 +72,7 @@ public class EmsilAdminServiceImpl implements EmailAdminService {
     public void save(EmilsAdminDTO emilsAdminDTO) {
         EmailAdmin emailAdmin = new EmailAdmin();
         BeanUtils.copyProperties(emilsAdminDTO, emailAdmin);
-//        Spring Security加盐
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         //        数据库密码
         String finalPassword = passwordEncoder.encode(emilsAdminDTO.getPassword());
         emailAdmin.setPassword(finalPassword);

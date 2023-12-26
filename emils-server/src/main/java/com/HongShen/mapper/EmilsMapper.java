@@ -1,7 +1,7 @@
 package com.HongShen.mapper;
 
 import com.github.pagehelper.Page;
-import com.HongShen.dto.EmilsPageQueryDTO;
+import com.HongShen.dto.email.EmilsPageQueryDTO;
 import com.HongShen.entity.Emils;
 import org.apache.ibatis.annotations.*;
 

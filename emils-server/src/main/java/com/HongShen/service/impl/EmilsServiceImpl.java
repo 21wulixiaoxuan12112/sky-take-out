@@ -4,8 +4,8 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.HongShen.constant.PasswordConstant;
 import com.HongShen.constant.StatusConstant;
-import com.HongShen.dto.EmilsDTO;
-import com.HongShen.dto.EmilsPageQueryDTO;
+import com.HongShen.dto.email.EmilsDTO;
+import com.HongShen.dto.email.EmilsPageQueryDTO;
 import com.HongShen.entity.Emils;
 import com.HongShen.mapper.EmilsMapper;
 import com.HongShen.result.PageResult;
@@ -13,7 +13,6 @@ import com.HongShen.service.EmilsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,11 +32,12 @@ public class EmilsServiceImpl implements EmilsService {
     @Override
     public void save(EmilsDTO emilsDTO) {
         Emils emils = new Emils();
+
         BeanUtils.copyProperties(emilsDTO, emils);
 //
         emils.setState(StatusConstant.ENABLE);
 
-        emils.setMailPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
+        emils.setMailPassword(PasswordConstant.DEFAULT_PASSWORD);
 
         emils.setCreateTime(LocalDateTime.now());
 

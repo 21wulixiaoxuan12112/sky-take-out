@@ -3,7 +3,6 @@ package com.HongShen.service;
 import com.HongShen.dto.Login.EmilsAdminDTO;
 import com.HongShen.dto.Login.EmilsAdminLoginDTO;
 import com.HongShen.entity.EmailAdmin;
-import com.HongShen.entity.EmailUser;
 
 /**
  * @author zy

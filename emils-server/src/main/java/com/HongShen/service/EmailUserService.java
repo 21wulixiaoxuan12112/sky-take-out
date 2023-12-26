@@ -1,8 +1,8 @@
 package com.HongShen.service;
 
-import com.HongShen.dto.EmilsUserDTO;
+import com.HongShen.dto.user.EmilsUserDTO;
 import com.HongShen.dto.Login.EmilsUserLoginDTO;
-import com.HongShen.dto.EmilsUserPageQueryDTO;
+import com.HongShen.dto.user.EmilsUserPageQueryDTO;
 import com.HongShen.entity.EmailUser;
 import com.HongShen.result.PageResult;
 

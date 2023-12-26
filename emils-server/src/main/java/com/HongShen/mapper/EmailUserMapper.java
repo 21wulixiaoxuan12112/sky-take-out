@@ -1,9 +1,7 @@
 package com.HongShen.mapper;
 
-import com.HongShen.dto.EmilsUserPageQueryDTO;
+import com.HongShen.dto.user.EmilsUserPageQueryDTO;
 import com.HongShen.entity.EmailUser;
-import com.HongShen.entity.Emils;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.*;
 

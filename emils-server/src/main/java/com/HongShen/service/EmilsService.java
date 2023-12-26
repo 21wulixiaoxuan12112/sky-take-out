@@ -1,7 +1,7 @@
 package com.HongShen.service;
 
-import com.HongShen.dto.EmilsDTO;
-import com.HongShen.dto.EmilsPageQueryDTO;
+import com.HongShen.dto.email.EmilsDTO;
+import com.HongShen.dto.email.EmilsPageQueryDTO;
 import com.HongShen.entity.Emils;
 import com.HongShen.result.PageResult;
 

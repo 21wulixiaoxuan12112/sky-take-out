@@ -1,4 +1,4 @@
-package com.HongShen.dto;
+package com.HongShen.dto.email;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 

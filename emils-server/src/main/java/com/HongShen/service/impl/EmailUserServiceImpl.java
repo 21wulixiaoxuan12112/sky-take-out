@@ -2,9 +2,9 @@ package com.HongShen.service.impl;
 
 import com.HongShen.constant.MessageConstant;
 import com.HongShen.constant.StatusConstant;
-import com.HongShen.dto.EmilsUserDTO;
+import com.HongShen.dto.user.EmilsUserDTO;
 import com.HongShen.dto.Login.EmilsUserLoginDTO;
-import com.HongShen.dto.EmilsUserPageQueryDTO;
+import com.HongShen.dto.user.EmilsUserPageQueryDTO;
 import com.HongShen.entity.EmailUser;
 import com.HongShen.exception.AccountLockedException;
 import com.HongShen.exception.AccountNotFoundException;
