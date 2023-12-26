@@ -1,28 +1,24 @@
-package com.HongShen.vo;
+package com.HongShen.dto.usertemplate;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * @author zy
- * @date 2023/12/26 13:57
+ * @date 2023/12/26 14:02
  */
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class AdminTemplateVO  implements Serializable {
+@ApiModel
+public class UserTemplateDTO  implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "主键")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
@@ -30,7 +26,10 @@ public class AdminTemplateVO  implements Serializable {
     private String filename;
 
     @ApiModelProperty(value = "别名")
-    private Integer alias;
+    private String alias;
+
+    @ApiModelProperty(value = "创建时间")
+    private LocalDateTime createtime;
 
     @ApiModelProperty(value = "文件路径")
     private String filepath;
@@ -38,6 +37,8 @@ public class AdminTemplateVO  implements Serializable {
     @ApiModelProperty(value = "模板内容")
     private String content;
 
-    @ApiModelProperty(value = "模板创建时间 ")
-    private LocalDateTime createtime;
+    @ApiModelProperty(value = "用户id")
+    private Integer userId;
+
+
 }
