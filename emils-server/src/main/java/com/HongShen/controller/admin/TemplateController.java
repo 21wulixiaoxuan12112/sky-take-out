@@ -34,7 +34,7 @@ public class TemplateController {
     }
 
     @GetMapping("/pageTemplate")
-    @ApiOperation("模板分页")
+    @ApiOperation("模板分页查看")
     public Result<PageResult> page(AdminTemplatePageQueryDTO adminTemplatePageQueryDTO) {
         log.info("分页模板数据{}", adminTemplatePageQueryDTO);
         PageResult pageResult = adminTemplateService.pageQuery(adminTemplatePageQueryDTO);

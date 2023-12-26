@@ -15,8 +15,7 @@
         where id=#{id}
     </update>
 
-    <select id="pageQuery" resultType="com.HongShen.entity.EmailUser"
-           >
+    <select id="pageQuery" resultType="com.HongShen.entity.EmailUser">
         select id,username,password,login_time,create_time,update_time,token,status from email_user
         <where>
             <if test="id != null and id != ''">

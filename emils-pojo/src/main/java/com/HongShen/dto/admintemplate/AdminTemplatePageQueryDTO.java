@@ -22,9 +22,14 @@ public class AdminTemplatePageQueryDTO implements Serializable {
 
     @ApiModelProperty(value = "别名")
     private Integer alias;
+
+    @ApiModelProperty(value = "模板内容")
+    private String content;
     //页码
+    @ApiModelProperty(value = "页码")
     private Integer page;
 
     //每页显示记录数
+    @ApiModelProperty(value = "每页显示记录数")
     private Integer pageSize;
 }
