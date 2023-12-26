@@ -2,6 +2,7 @@ package com.HongShen.service;
 
 import com.HongShen.dto.admintemplate.AdminTemplateDTO;
 import com.HongShen.dto.admintemplate.AdminTemplatePageQueryDTO;
+import com.HongShen.entity.AdminTemplate;
 import com.HongShen.result.PageResult;
 
 import java.io.IOException;
@@ -18,4 +19,5 @@ public interface AdminTemplateService {
     PageResult pageQuery(AdminTemplatePageQueryDTO adminTemplatePageQueryDTO);
 
 
+    AdminTemplate getById(Long id);
 }

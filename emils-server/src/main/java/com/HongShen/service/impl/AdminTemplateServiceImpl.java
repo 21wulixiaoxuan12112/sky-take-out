@@ -32,6 +32,11 @@ public class AdminTemplateServiceImpl implements AdminTemplateService {
     private AdminTemplateMapper adminTemplateMapper;
 
     @Override
+    public AdminTemplate getById(Long id) {
+        return adminTemplateMapper.getById(id);
+    }
+
+    @Override
     public void save(AdminTemplateDTO adminTemplateDTO) throws IOException {
 //        创建AdminTemplate
         AdminTemplate adminTemplate = new AdminTemplate();

@@ -6,6 +6,7 @@ import com.HongShen.entity.AdminTemplate;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author zy
@@ -19,4 +20,7 @@ public interface AdminTemplateMapper {
 
 
     Page<AdminTemplate> pageQuery(AdminTemplatePageQueryDTO adminTemplatePageQueryDTO);
+
+    @Select("select filename, alias, filepath, content, createtime from admin_template where id = #{id}")
+    AdminTemplate getById(Long id);
 }

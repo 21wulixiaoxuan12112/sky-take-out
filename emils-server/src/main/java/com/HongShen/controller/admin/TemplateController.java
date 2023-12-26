@@ -2,6 +2,8 @@ package com.HongShen.controller.admin;
 
 import com.HongShen.dto.admintemplate.AdminTemplateDTO;
 import com.HongShen.dto.admintemplate.AdminTemplatePageQueryDTO;
+import com.HongShen.entity.AdminTemplate;
+import com.HongShen.entity.EmailUser;
 import com.HongShen.result.PageResult;
 import com.HongShen.result.Result;
 import com.HongShen.service.AdminTemplateService;
@@ -40,4 +42,13 @@ public class TemplateController {
         PageResult pageResult = adminTemplateService.pageQuery(adminTemplatePageQueryDTO);
         return Result.success(pageResult);
     }
+    //    反显
+    @GetMapping("/{id}")
+    @ApiOperation("查看")
+    public Result<AdminTemplate> getById(@PathVariable Long id) {
+        AdminTemplate adminTemplate = adminTemplateService.getById(id);
+//        EmailUser emailUser = emailUserService.getById(id);
+        return Result.success(adminTemplate);
+    }
+
 }
