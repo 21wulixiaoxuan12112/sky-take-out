@@ -9,10 +9,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -28,11 +26,24 @@ public class UserTemplateController {
     @Autowired
     private UserTemplateService userTemplateService;
 
+
     @PostMapping
     @ApiOperation("新增模板")
-    public Result saveUserTemplate(@RequestBody UserTemplateDTO userTemplateDTO) throws IOException {
-        log.info("新增模板：{}", userTemplateDTO);
-        userTemplateService.save(userTemplateDTO);
-        return Result.success();
+    public Result saveUserTemplate(@RequestParam("file") MultipartFile file) throws IOException {
+        log.info("新增模板：{}", file);
+     // 在这里处理文件，例如保存到磁盘或执行相应的业务逻辑
+        if (!file.isEmpty()) {
+//            String fileName = file.getOriginalFilename();
+//            String filePath = "emils-server/src/main/resources/template/" + fileName;
+//            // 存储文件名称和路径到数据库
+//            yourDatabase.storeFileNameAndPath(fileName, filePath);
+//
+//            // 保存文件到磁盘
+//            yourFileStorage.saveFile(file, filePath);
+            userTemplateService.save(file);
+            return Result.success("文件上传成功!");
+        } else {
+            return Result.error("文件上传失败!");
+        }
     }
 }

@@ -3,7 +3,6 @@ package com.HongShen.service.impl;
 import com.HongShen.dto.admintemplate.AdminTemplateDTO;
 import com.HongShen.dto.admintemplate.AdminTemplatePageQueryDTO;
 import com.HongShen.entity.AdminTemplate;
-import com.HongShen.entity.EmailUser;
 import com.HongShen.mapper.AdminTemplateMapper;
 import com.HongShen.result.PageResult;
 import com.HongShen.service.AdminTemplateService;
@@ -45,9 +44,14 @@ public class AdminTemplateServiceImpl implements AdminTemplateService {
         Path path = Paths.get(adminTemplateDTO.getFilepath());
 //        塞入AdminTemplateDTO当中
         BeanUtils.copyProperties(adminTemplateDTO, adminTemplate);
+//
+        String projectRoot = System.getProperty("user.dir");
+        String relativePath = Paths.get(projectRoot).relativize(path).toString();
+        adminTemplate.setFilepath(relativePath);
+//
         adminTemplate.setFilename(file.getName());
         adminTemplate.setContent(Files.readString(path));
-        adminTemplate.setFilepath(file.getAbsolutePath());
+//        adminTemplate.setFilepath(file.getPath());
         adminTemplate.setCreatetime(LocalDateTime.now());
 //       sql语句
         adminTemplateMapper.save(adminTemplate);
