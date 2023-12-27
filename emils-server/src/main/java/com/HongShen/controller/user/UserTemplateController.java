@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author zy
@@ -31,19 +32,28 @@ public class UserTemplateController {
     @ApiOperation("新增模板")
     public Result saveUserTemplate(@RequestParam("file") MultipartFile file) throws IOException {
         log.info("新增模板：{}", file);
-     // 在这里处理文件，例如保存到磁盘或执行相应的业务逻辑
+        // 在这里处理文件，例如保存到磁盘或执行相应的业务逻辑
         if (!file.isEmpty()) {
+///        文件名字
 //            String fileName = file.getOriginalFilename();
+////        文件路径
 //            String filePath = "emils-server/src/main/resources/template/" + fileName;
-//            // 存储文件名称和路径到数据库
-//            yourDatabase.storeFileNameAndPath(fileName, filePath);
-//
-//            // 保存文件到磁盘
-//            yourFileStorage.saveFile(file, filePath);
-            userTemplateService.save(file);
+////        文件内容
+//            String content = new String(file.getBytes(), StandardCharsets.UTF_8);
+
+            userTemplateService.set(file);
+
             return Result.success("文件上传成功!");
         } else {
             return Result.error("文件上传失败!");
         }
+    }
+
+    @PostMapping
+    @ApiOperation("新增模板")
+    public Result saveUserTemplate(@RequestBody UserTemplateDTO userTemplateDTO) throws IOException {
+        log.info("新增模板：{}", userTemplateDTO);
+        userTemplateService.save(userTemplateDTO);
+        return Result.success();
     }
 }

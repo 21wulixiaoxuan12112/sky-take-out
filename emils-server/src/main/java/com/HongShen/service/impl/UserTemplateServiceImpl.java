@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,19 +30,25 @@ public class UserTemplateServiceImpl implements UserTemplateService {
 
 
     @Override
-    public void save(MultipartFile file) {
+    public void save(UserTemplateDTO userTemplateDTO) {
+        UserTemplate userTemplate = new UserTemplate();
+        set(MultipartFile file);
+        userTemplate.setFilename()
+    }
+
+    @Override
+    public void set(MultipartFile file) throws IOException {
 //        文件名字
         String fileName = file.getOriginalFilename();
 //        文件路径
         String filePath = "emils-server/src/main/resources/template/" + fileName;
 //        文件内容
-        Paths.get(file.)
-        String content =
-//         创建时间
+        String content = new String(file.getBytes(), StandardCharsets.UTF_8);
+
 // 存储文件名称和路径到数据库
-                yourDatabase.storeFileNameAndPath(fileName, filePath);
+//        yourDatabase.storeFileNameAndPath(fileName, filePath);
 
         // 保存文件到磁盘
-        yourFileStorage.saveFile(file, filePath);
+//        yourFileStorage.saveFile(file, filePath);
     }
 }

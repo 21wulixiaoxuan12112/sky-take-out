@@ -11,5 +11,7 @@ import java.io.IOException;
  */
 public interface UserTemplateService {
 
-    void save(MultipartFile file);
+    void set(MultipartFile file) throws IOException;
+
+    void save(UserTemplateDTO userTemplateDTO);
 }
