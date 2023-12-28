@@ -44,14 +44,22 @@ public class AdminTemplateController {
         PageResult pageResult = adminTemplateService.pageQuery(userTemplatePageQueryDTO);
         return Result.success(pageResult);
     }
+
     //    反显
     @GetMapping("/{id}")
-    @ApiOperation("查看")
+    @ApiOperation("查看模板")
     public Result<UserTemplate> getById(@PathVariable Long id) {
-       UserTemplate userTemplate =adminTemplateService.getById(id);
+        UserTemplate userTemplate = adminTemplateService.getById(id);
 //        AdminTemplate adminTemplate = adminTemplateService.getById(id);
 //        EmailUser emailUser = emailUserService.getById(id);
         return Result.success(userTemplate);
     }
 
+    @PostMapping("/state/{state}")
+    @ApiOperation("启用禁用模板")
+    public Result startOrStop(@PathVariable Integer status, Integer id) {
+        log.info("启用禁用邮箱账号：{},{}", status, id);
+        adminTemplateService.startOrStop(status, id);
+        return Result.success();
+    }
 }

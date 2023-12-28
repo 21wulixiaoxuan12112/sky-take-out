@@ -5,10 +5,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.google.common.util.concurrent.Service;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -23,6 +24,9 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("user_template")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @ApiModel(value="UserTemplate对象", description="用户模板表")
 public class UserTemplate implements Serializable {
 
@@ -51,5 +55,6 @@ public class UserTemplate implements Serializable {
 
     @ApiModelProperty(value = "模板状态")
     private Integer status;
+
 
 }

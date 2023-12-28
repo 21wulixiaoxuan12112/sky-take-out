@@ -21,4 +21,6 @@ public interface AdminTemplateService {
 
 
     UserTemplate getById(Long id);
+
+    void startOrStop(Integer status, Integer id);
 }

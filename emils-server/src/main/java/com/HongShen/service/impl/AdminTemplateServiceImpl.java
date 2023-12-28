@@ -4,6 +4,7 @@ import com.HongShen.dto.admintemplate.AdminTemplateDTO;
 import com.HongShen.dto.admintemplate.AdminTemplatePageQueryDTO;
 import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
 import com.HongShen.entity.AdminTemplate;
+import com.HongShen.entity.Emils;
 import com.HongShen.entity.UserTemplate;
 import com.HongShen.mapper.AdminTemplateMapper;
 import com.HongShen.result.PageResult;
@@ -59,6 +60,7 @@ public class AdminTemplateServiceImpl implements AdminTemplateService {
 //        adminTemplateMapper.save(adminTemplate);
 //    }
 
+
     @Override
     public PageResult pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO) {
         PageHelper.startPage(userTemplatePageQueryDTO.getPage(),userTemplatePageQueryDTO.getPageSize());
@@ -67,4 +69,14 @@ public class AdminTemplateServiceImpl implements AdminTemplateService {
         List<UserTemplate> result = page.getResult();
         return new PageResult(total, result);
     }
+    @Override
+    public void startOrStop(Integer status, Integer id) {
+        //update emils set state = ? where id=?
+        UserTemplate userTemplate =UserTemplate.builder()
+                .status(status)
+                .id(id)
+                .build();
+        adminTemplateMapper.startOrStop(userTemplate);
+    }
+
 }

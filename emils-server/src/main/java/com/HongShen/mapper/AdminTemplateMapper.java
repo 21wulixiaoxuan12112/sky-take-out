@@ -9,6 +9,7 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * @author zy
@@ -23,9 +24,12 @@ public interface AdminTemplateMapper {
 
     Page<UserTemplate> pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO);
 
-    ;
+
 
     @Select("select id, filename, alias, createtime, filepath,userid,status from user_template where id = #{id}")
     UserTemplate getById(Long id);
+
+    @Update("update user_template set status = #{status} where id=#{id}")
+    void startOrStop(UserTemplate userTemplate);
 //    AdminTemplate getById(Long id);
 }
