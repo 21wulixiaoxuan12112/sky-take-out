@@ -1,7 +1,11 @@
 package com.HongShen.controller.user;
 
 import com.HongShen.dto.admintemplate.AdminTemplateDTO;
+import com.HongShen.dto.user.EmilsUserDTO;
+import com.HongShen.dto.user.EmilsUserPageQueryDTO;
 import com.HongShen.dto.usertemplate.UserTemplateDTO;
+import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
+import com.HongShen.result.PageResult;
 import com.HongShen.result.Result;
 import com.HongShen.service.AdminTemplateService;
 import com.HongShen.service.UserTemplateService;
@@ -30,30 +34,31 @@ public class UserTemplateController {
 
     @PostMapping
     @ApiOperation("新增模板")
-    public Result saveUserTemplate(@RequestParam("file") MultipartFile file) throws IOException {
+    public Result saveUserTemplate(@RequestParam("file") MultipartFile file, String alais) throws IOException {
         log.info("新增模板：{}", file);
         // 在这里处理文件，例如保存到磁盘或执行相应的业务逻辑
         if (!file.isEmpty()) {
-///        文件名字
-//            String fileName = file.getOriginalFilename();
-////        文件路径
-//            String filePath = "emils-server/src/main/resources/template/" + fileName;
-////        文件内容
-//            String content = new String(file.getBytes(), StandardCharsets.UTF_8);
 
-            userTemplateService.set(file);
-
-            return Result.success("文件上传成功!");
+            return Result.success(userTemplateService.set(file, alais));
         } else {
             return Result.error("文件上传失败!");
         }
     }
 
-    @PostMapping
-    @ApiOperation("新增模板")
-    public Result saveUserTemplate(@RequestBody UserTemplateDTO userTemplateDTO) throws IOException {
-        log.info("新增模板：{}", userTemplateDTO);
-        userTemplateService.save(userTemplateDTO);
+    //    分页
+    @GetMapping("/pageTemplate")
+    @ApiOperation("模板分页")
+    public Result<PageResult> page(UserTemplatePageQueryDTO userTemplatePageQueryDTO) {
+        log.info("分页模板数据{}", userTemplatePageQueryDTO);
+        PageResult pageResult = userTemplateService.pageQuery(userTemplatePageQueryDTO);
+        return Result.success(pageResult);
+    }
+
+    @PutMapping
+    @ApiOperation("替换模板")
+    public Result updateUser(@RequestPart("file") MultipartFile file) {
+        log.info("替换模板信息", file);
+        userTemplateService.update(file);
         return Result.success();
     }
 }

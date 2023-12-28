@@ -1,6 +1,8 @@
 package com.HongShen.service;
 
-import com.HongShen.dto.usertemplate.UserTemplateDTO;
+import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
+import com.HongShen.result.PageResult;
+import com.HongShen.result.Result;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -11,7 +13,10 @@ import java.io.IOException;
  */
 public interface UserTemplateService {
 
-    void set(MultipartFile file) throws IOException;
+    Result set(MultipartFile file, String alais) throws IOException;
 
-    void save(UserTemplateDTO userTemplateDTO);
+
+    PageResult pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO);
+
+    void update(MultipartFile file);
 }

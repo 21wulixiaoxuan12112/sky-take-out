@@ -38,7 +38,7 @@ public class UserTemplateDTO  implements Serializable {
     private String content;
 
     @ApiModelProperty(value = "用户id")
-    private Integer userId;
+    private Long userId;
 
 
 }

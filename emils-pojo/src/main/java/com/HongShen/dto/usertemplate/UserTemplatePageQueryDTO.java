@@ -22,5 +22,9 @@ public class UserTemplatePageQueryDTO  implements Serializable {
 
     @ApiModelProperty(value = "别名")
     private Integer alias;
+    //页码
+    private Integer page;
 
+    //每页显示记录数
+    private Integer pageSize;
 }

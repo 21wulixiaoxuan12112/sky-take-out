@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 /**
  * <p>
  * 用户模板表
- * </p>
+ * </p >
  *
  * @author author
  * @since 2023-12-26
@@ -47,7 +47,7 @@ public class UserTemplate implements Serializable {
     private String content;
 
     @ApiModelProperty(value = "用户id")
-    private Integer userId;
+    private Long userId;
 
 
 }

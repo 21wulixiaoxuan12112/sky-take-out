@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.HongShen.mapper.UserTemplateMapper">
+    <select id="pageQuery" resultType="com.HongShen.entity.UserTemplate">
+        select id, filename, alias, filepath, content, userId, createtime from emails.user_template
+        <where>
+            <if test="id != null and id != ''">
+                and id =#{id}
+            </if>
+            <if test="username != null and username != ''">
+                and filename like concat('%',#{filename},'%')
+            </if>
+            <if test="status != null and status != ''">
+                and alias like concat('%',#{alias},'%')
+            </if>
+        </where>
+        order by createtime desc
+    </select>
+</mapper>
