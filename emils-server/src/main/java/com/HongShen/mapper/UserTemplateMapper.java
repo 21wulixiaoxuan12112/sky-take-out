@@ -3,9 +3,7 @@ package com.HongShen.mapper;
 import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
 import com.HongShen.entity.UserTemplate;
 import com.github.pagehelper.Page;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 /**
  * @author zy
@@ -21,6 +19,14 @@ public interface UserTemplateMapper {
 
 
     @Select("select count(*) as 'number' from emails.user_template where alias=#{alias} and userid=#{userid} ")
-    Integer select(String alias,Long userid);
+    Integer select(String alias, Long userid);
 
+    @Select("select id, filename, alias, createtime, filepath,userid,status from user_template where id = #{id} and userid=#{userid} ")
+    UserTemplate getById(Integer id, Long userid);
+
+    @Delete("delete from user_template where id =#{id} and userid=#{userid}")
+    void deleteById(Long id, Long userid);
+
+    @Update("update user_template set alias=#{alias},filepath=#{allPath} where id=#{id} and userid=#{currentId}")
+    void update(Integer id, String alias, Long currentId, String allPath);
 }

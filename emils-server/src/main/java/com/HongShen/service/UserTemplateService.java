@@ -1,6 +1,7 @@
 package com.HongShen.service;
 
 import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
+import com.HongShen.entity.UserTemplate;
 import com.HongShen.result.PageResult;
 import com.HongShen.result.Result;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,5 +19,9 @@ public interface UserTemplateService {
 
     PageResult pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO);
 
-    void update(MultipartFile file);
+    void update(Integer id,MultipartFile file,String alias) throws IOException;
+
+    UserTemplate getById(Integer id);
+
+    void deleteById(Long id);
 }

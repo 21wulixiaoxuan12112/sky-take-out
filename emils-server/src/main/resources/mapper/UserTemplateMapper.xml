@@ -16,6 +16,7 @@
             <if test="alias != null and alias != ''">
                 and alias like concat('%',#{alias},'%')
             </if>
+                and userid = #{userid}
         </where>
         order by createtime desc
     </select>

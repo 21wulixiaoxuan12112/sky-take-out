@@ -3,11 +3,9 @@ package com.HongShen.service;
 import com.HongShen.dto.admintemplate.AdminTemplateDTO;
 import com.HongShen.dto.admintemplate.AdminTemplatePageQueryDTO;
 import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
-import com.HongShen.entity.AdminTemplate;
 import com.HongShen.entity.UserTemplate;
 import com.HongShen.result.PageResult;
 
-import java.io.IOException;
 
 /**
  * @author zy

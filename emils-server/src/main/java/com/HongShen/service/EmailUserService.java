@@ -28,5 +28,5 @@ public interface EmailUserService {
 
     void startOrStop(Integer status, Integer id);
 
-   EmailUser login(EmilsUserLoginDTO emilsUserLoginDTO);
+    EmailUser login(EmilsUserLoginDTO emilsUserLoginDTO);
 }

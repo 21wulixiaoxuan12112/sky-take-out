@@ -1,7 +1,10 @@
 package com.HongShen.controller.user;
 
 
+import com.HongShen.dto.user.EmilsUserDTO;
 import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
+import com.HongShen.entity.EmailUser;
+import com.HongShen.entity.UserTemplate;
 import com.HongShen.result.PageResult;
 import com.HongShen.result.Result;
 import com.HongShen.service.UserTemplateService;
@@ -50,9 +53,23 @@ public class UserTemplateController {
 
     @PutMapping
     @ApiOperation("替换模板")
-    public Result updateUser(@RequestPart("file") MultipartFile file) {
+    public Result updateUser(@RequestPart("file") MultipartFile file,String alias,Integer id) throws IOException {
         log.info("替换模板信息", file);
-        userTemplateService.update(file);
+        userTemplateService.update(id,file,alias);
+        return Result.success();
+    }
+    @GetMapping("/{id}")
+    @ApiOperation("查看模板")
+    public Result<UserTemplate> getById(@PathVariable Integer id) {
+        UserTemplate userTemplate = userTemplateService.getById(id);
+//        AdminTemplate adminTemplate = adminTemplateService.getById(id);
+//        EmailUser emailUser = emailUserService.getById(id);
+        return Result.success(userTemplate);
+    }
+    @DeleteMapping("/{id}")
+    @ApiOperation("删除")
+    public Result<UserTemplate> deleteById(@PathVariable Long id) {
+        userTemplateService.deleteById(id);
         return Result.success();
     }
 
