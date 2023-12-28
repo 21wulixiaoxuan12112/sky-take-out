@@ -24,8 +24,6 @@ public interface AdminTemplateMapper {
 
     Page<UserTemplate> pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO);
 
-
-
     @Select("select id, filename, alias, createtime, filepath,userid,status from user_template where id = #{id}")
     UserTemplate getById(Long id);
 

@@ -28,12 +28,12 @@ public class UserTemplateController {
 
     @PostMapping
     @ApiOperation("新增模板")
-    public Result saveUserTemplate(@RequestParam("file") MultipartFile file, String alais) throws IOException {
+    public Result saveUserTemplate(@RequestParam("file") MultipartFile file, String alias) throws IOException {
         log.info("新增模板：{}", file);
         // 在这里处理文件，例如保存到磁盘或执行相应的业务逻辑
         if (!file.isEmpty()) {
 
-            return Result.success(userTemplateService.set(file, alais));
+            return Result.success(userTemplateService.set(file, alias));
         } else {
             return Result.error("文件为空，上传失败！");
         }

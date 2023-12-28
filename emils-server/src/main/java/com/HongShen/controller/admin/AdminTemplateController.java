@@ -55,7 +55,7 @@ public class AdminTemplateController {
         return Result.success(userTemplate);
     }
 
-    @PostMapping("/state/{state}")
+    @PostMapping("/status/{status}")
     @ApiOperation("启用禁用模板")
     public Result startOrStop(@PathVariable Integer status, Integer id) {
         log.info("启用禁用邮箱账号：{},{}", status, id);

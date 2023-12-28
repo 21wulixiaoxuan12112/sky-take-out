@@ -47,11 +47,11 @@ public class UserTemplateServiceImpl implements UserTemplateService {
     }
 
     @Override
-    public Result set(MultipartFile file, String alais) throws IOException {
+    public Result set(MultipartFile file, String alias) throws IOException {
 //      在指定目录下创建当前登录用户的文件夹
         String path = "emils-server/src/main/resources/template";
-//BaseContext不对     String folderName = BaseContext.getCurrentId().toString();
-        String folderName = "1";
+        String folderName = BaseContext.getCurrentId().toString();
+//        String folderName = "1";
 //       文件路径
 //        String pathName = path + "/" + folderName;
         String pathName = path + "/" + folderName;
@@ -81,23 +81,23 @@ public class UserTemplateServiceImpl implements UserTemplateService {
             System.out.println("当前登录用户文件夹创建成功！");
         }
 
-        String allPath = pathName + "/" + alais + "." + fileExtension;
+        String allPath = pathName + "/" + alias + "." + fileExtension;
         copyFile(file, allPath);
 //         文件内容
 //        String content = new String(file.getBytes(), StandardCharsets.UTF_8);
         LocalDateTime dateTime = LocalDateTime.now();
-//不对        Long userId = BaseContext.getCurrentId();
-        Long userId = Long.valueOf(1);
+        Long userid = BaseContext.getCurrentId();
+//        Long userId = Long.valueOf(1);
 //        存储文件名称和路径到数据库
         UserTemplate userTemplate = new UserTemplate();
-        userTemplate.setFilename(file.getName());
-        userTemplate.setAlias(alais);
+        userTemplate.setFilename(file.getOriginalFilename());
+        userTemplate.setAlias(alias);
         userTemplate.setFilepath(allPath);
         userTemplate.setCreatetime(dateTime);
 //        userTemplate.setContent(content);
-        userTemplate.setUserid(userId);
+        userTemplate.setUserid(userid);
         userTemplate.setStatus(0);
-        Integer number = userTemplateMapper.select(alais);
+        Integer number = userTemplateMapper.select(alias,userid);
         if (number > 0) {
             return Result.error("文件别名重复！");
         }

@@ -20,7 +20,7 @@ public interface UserTemplateMapper {
     Page<UserTemplate> pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO);
 
 
-    @Select("select count(*) as 'number' from emails.user_template where alias=#{alias}")
-    Integer select(String alais);
+    @Select("select count(*) as 'number' from emails.user_template where alias=#{alias} and userid=#{userid} ")
+    Integer select(String alias,Long userid);
 
 }

@@ -56,8 +56,8 @@ public class EmilsUserLoginController {
         Map<String, Object> claims = new HashMap<>();
         claims.put(JwtClaimsConstant.USER_ID, emailUser.getId());
         String token = JwtUtil.createJWT(
-                jwtProperties.getAdminSecretKey(),
-                jwtProperties.getAdminTtl(),
+                jwtProperties.getUserSecretKey(),
+                jwtProperties.getUserTtl(),
                 claims);
         System.out.println("普通用户token:" + token);
         EmilUserLoginVO employeeLoginVO = EmilUserLoginVO.builder()

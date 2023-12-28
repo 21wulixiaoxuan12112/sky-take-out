@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public interface UserTemplateService {
 
-    Result set(MultipartFile file, String alais) throws IOException;
+    Result set(MultipartFile file, String alias) throws IOException;
 
 
     PageResult pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO);
