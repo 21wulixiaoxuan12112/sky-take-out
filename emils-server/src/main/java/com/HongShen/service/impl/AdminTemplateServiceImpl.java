@@ -2,7 +2,9 @@ package com.HongShen.service.impl;
 
 import com.HongShen.dto.admintemplate.AdminTemplateDTO;
 import com.HongShen.dto.admintemplate.AdminTemplatePageQueryDTO;
+import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
 import com.HongShen.entity.AdminTemplate;
+import com.HongShen.entity.UserTemplate;
 import com.HongShen.mapper.AdminTemplateMapper;
 import com.HongShen.result.PageResult;
 import com.HongShen.service.AdminTemplateService;
@@ -31,38 +33,38 @@ public class AdminTemplateServiceImpl implements AdminTemplateService {
     private AdminTemplateMapper adminTemplateMapper;
 
     @Override
-    public AdminTemplate getById(Long id) {
+    public UserTemplate getById(Long id) {
         return adminTemplateMapper.getById(id);
     }
 
-    @Override
-    public void save(AdminTemplateDTO adminTemplateDTO) throws IOException {
-//        创建AdminTemplate
-        AdminTemplate adminTemplate = new AdminTemplate();
-//        Document document = Jsoup.parse(adminTemplateDTO.getFilepath());
-        File file = new File(adminTemplateDTO.getFilepath());
-        Path path = Paths.get(adminTemplateDTO.getFilepath());
-//        塞入AdminTemplateDTO当中
-        BeanUtils.copyProperties(adminTemplateDTO, adminTemplate);
-//
-        String projectRoot = System.getProperty("user.dir");
-        String relativePath = Paths.get(projectRoot).relativize(path).toString();
-        adminTemplate.setFilepath(relativePath);
-//
-        adminTemplate.setFilename(file.getName());
-        adminTemplate.setContent(Files.readString(path));
-//        adminTemplate.setFilepath(file.getPath());
-        adminTemplate.setCreatetime(LocalDateTime.now());
-//       sql语句
-        adminTemplateMapper.save(adminTemplate);
-    }
+//    @Override
+//    public void save(AdminTemplateDTO adminTemplateDTO) throws IOException {
+////        创建AdminTemplate
+//        AdminTemplate adminTemplate = new AdminTemplate();
+////        Document document = Jsoup.parse(adminTemplateDTO.getFilepath());
+//        File file = new File(adminTemplateDTO.getFilepath());
+//        Path path = Paths.get(adminTemplateDTO.getFilepath());
+////        塞入AdminTemplateDTO当中
+//        BeanUtils.copyProperties(adminTemplateDTO, adminTemplate);
+////
+//        String projectRoot = System.getProperty("user.dir");
+//        String relativePath = Paths.get(projectRoot).relativize(path).toString();
+//        adminTemplate.setFilepath(relativePath);
+////
+//        adminTemplate.setFilename(file.getName());
+//        adminTemplate.setContent(Files.readString(path));
+////        adminTemplate.setFilepath(file.getPath());
+//        adminTemplate.setCreatetime(LocalDateTime.now());
+////       sql语句
+//        adminTemplateMapper.save(adminTemplate);
+//    }
 
     @Override
-    public PageResult pageQuery(AdminTemplatePageQueryDTO adminTemplatePageQueryDTO) {
-        PageHelper.startPage(adminTemplatePageQueryDTO.getPage(), adminTemplatePageQueryDTO.getPageSize());
-        Page<AdminTemplate> page = adminTemplateMapper.pageQuery(adminTemplatePageQueryDTO);
+    public PageResult pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO) {
+        PageHelper.startPage(userTemplatePageQueryDTO.getPage(),userTemplatePageQueryDTO.getPageSize());
+        Page<UserTemplate> page = adminTemplateMapper.pageQuery(userTemplatePageQueryDTO);
         long total = page.getTotal();
-        List<AdminTemplate> result = page.getResult();
+        List<UserTemplate> result = page.getResult();
         return new PageResult(total, result);
     }
 }

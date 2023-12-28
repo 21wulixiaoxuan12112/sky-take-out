@@ -2,7 +2,9 @@ package com.HongShen.service;
 
 import com.HongShen.dto.admintemplate.AdminTemplateDTO;
 import com.HongShen.dto.admintemplate.AdminTemplatePageQueryDTO;
+import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
 import com.HongShen.entity.AdminTemplate;
+import com.HongShen.entity.UserTemplate;
 import com.HongShen.result.PageResult;
 
 import java.io.IOException;
@@ -13,11 +15,10 @@ import java.io.IOException;
  */
 public interface AdminTemplateService {
 
-    void save(AdminTemplateDTO adminTemplateDTO) throws IOException;
+//    void save(AdminTemplateDTO adminTemplateDTO) throws IOException;
 
-    //    void save(String filepath) throws IOException;
-    PageResult pageQuery(AdminTemplatePageQueryDTO adminTemplatePageQueryDTO);
+    PageResult pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO);
 
 
-    AdminTemplate getById(Long id);
+    UserTemplate getById(Long id);
 }

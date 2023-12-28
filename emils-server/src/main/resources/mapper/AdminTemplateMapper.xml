@@ -2,17 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.HongShen.mapper.AdminTemplateMapper">
 
-    <select id="pageQuery" resultType="com.HongShen.entity.AdminTemplate">
-        select id,filename,alias,filepath,content,createtime from admin_template
+    <select id="pageQuery" resultType="com.HongShen.entity.UserTemplate">
+        select id,filename,alias,filepath,createtime,userid,status from user_template
         <where>
             <if test="id != null and id != ''">
-                and id like concat('%',#{id},'%')
+                and id =#{id}
+            </if>
+            <if test="status != null and status != ''">
+                and status =#{status}
             </if>
             <if test="filename != null and filename != ''">
                 and filename like concat('%',#{filename},'%')
             </if>
             <if test="alias != null and alias != ''">
                 and alias like concat('%',#{alias},'%')
+            </if>
+            <if test="userid != null and userid != ''">
+                and userid like concat('%',#{userid},'%')
             </if>
         </where>
         order by createtime desc

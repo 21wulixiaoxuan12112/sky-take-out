@@ -9,6 +9,7 @@ import com.HongShen.result.Result;
 import com.HongShen.service.UserTemplateService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,12 +41,16 @@ public class UserTemplateServiceImpl implements UserTemplateService {
         return new PageResult(total, result);
     }
 
+    public void copyFile(MultipartFile file, String destinationPath) throws IOException {
+        byte[] fileBytes = file.getBytes();
+        FileUtils.writeByteArrayToFile(new File(destinationPath), fileBytes);
+    }
 
     @Override
     public Result set(MultipartFile file, String alais) throws IOException {
 //      在指定目录下创建当前登录用户的文件夹
         String path = "emils-server/src/main/resources/template";
-//不对     String folderName = BaseContext.getCurrentId().toString();
+//BaseContext不对     String folderName = BaseContext.getCurrentId().toString();
         String folderName = "1";
 //       文件路径
 //        String pathName = path + "/" + folderName;
@@ -77,21 +82,22 @@ public class UserTemplateServiceImpl implements UserTemplateService {
         }
 
         String allPath = pathName + "/" + alais + "." + fileExtension;
-//        将文件copy到指定目录下
-        file.transferTo(new File(allPath));
+        copyFile(file, allPath);
 //         文件内容
-        String content = new String(file.getBytes(), StandardCharsets.UTF_8);
+//        String content = new String(file.getBytes(), StandardCharsets.UTF_8);
         LocalDateTime dateTime = LocalDateTime.now();
 //不对        Long userId = BaseContext.getCurrentId();
         Long userId = Long.valueOf(1);
 //        存储文件名称和路径到数据库
         UserTemplate userTemplate = new UserTemplate();
-        userTemplate.setFilename(alais);
+        userTemplate.setFilename(file.getName());
+        userTemplate.setAlias(alais);
         userTemplate.setFilepath(allPath);
         userTemplate.setCreatetime(dateTime);
-        userTemplate.setContent(content);
-        userTemplate.setUserId(userId);
-        Integer number = userTemplateMapper.select(userTemplate.getFilename());
+//        userTemplate.setContent(content);
+        userTemplate.setUserid(userId);
+        userTemplate.setStatus(0);
+        Integer number = userTemplateMapper.select(alais);
         if (number > 0) {
             return Result.error("文件别名重复！");
         }

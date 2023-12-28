@@ -43,11 +43,13 @@ public class UserTemplate implements Serializable {
     @ApiModelProperty(value = "文件路径")
     private String filepath;
 
-    @ApiModelProperty(value = "模板内容")
-    private String content;
+//    @ApiModelProperty(value = "模板内容")
+//    private String content;
 
     @ApiModelProperty(value = "用户id")
-    private Long userId;
+    private Long userid;
 
+    @ApiModelProperty(value = "模板状态")
+    private Integer status;
 
 }

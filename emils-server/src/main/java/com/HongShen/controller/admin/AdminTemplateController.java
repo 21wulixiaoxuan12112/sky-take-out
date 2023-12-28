@@ -2,8 +2,10 @@ package com.HongShen.controller.admin;
 
 import com.HongShen.dto.admintemplate.AdminTemplateDTO;
 import com.HongShen.dto.admintemplate.AdminTemplatePageQueryDTO;
+import com.HongShen.dto.usertemplate.UserTemplatePageQueryDTO;
 import com.HongShen.entity.AdminTemplate;
 import com.HongShen.entity.EmailUser;
+import com.HongShen.entity.UserTemplate;
 import com.HongShen.result.PageResult;
 import com.HongShen.result.Result;
 import com.HongShen.service.AdminTemplateService;
@@ -23,32 +25,33 @@ import java.io.IOException;
 @RequestMapping("/admin/emils/template")
 @Slf4j
 @Api(tags = "模板管理相关接口")
-public class TemplateController {
+public class AdminTemplateController {
     @Autowired
     private AdminTemplateService adminTemplateService;
 
-    @PostMapping
-    @ApiOperation("新增模板")
-    public Result saveAdminTemplate(@RequestBody AdminTemplateDTO adminTemplateDTO) throws IOException {
-        log.info("新增模板：{}", adminTemplateDTO);
-        adminTemplateService.save(adminTemplateDTO);
-        return Result.success();
-    }
+//    @PostMapping
+//    @ApiOperation("新增模板")
+//    public Result saveAdminTemplate(@RequestBody AdminTemplateDTO adminTemplateDTO) throws IOException {
+//        log.info("新增模板：{}", adminTemplateDTO);
+//        adminTemplateService.save(adminTemplateDTO);
+//        return Result.success();
+//    }
 
     @GetMapping("/pageTemplate")
     @ApiOperation("模板分页查看")
-    public Result<PageResult> page(AdminTemplatePageQueryDTO adminTemplatePageQueryDTO) {
-        log.info("分页模板数据{}", adminTemplatePageQueryDTO);
-        PageResult pageResult = adminTemplateService.pageQuery(adminTemplatePageQueryDTO);
+    public Result<PageResult> page(UserTemplatePageQueryDTO userTemplatePageQueryDTO) {
+        log.info("分页模板数据{}", userTemplatePageQueryDTO);
+        PageResult pageResult = adminTemplateService.pageQuery(userTemplatePageQueryDTO);
         return Result.success(pageResult);
     }
     //    反显
     @GetMapping("/{id}")
     @ApiOperation("查看")
-    public Result<AdminTemplate> getById(@PathVariable Long id) {
-        AdminTemplate adminTemplate = adminTemplateService.getById(id);
+    public Result<UserTemplate> getById(@PathVariable Long id) {
+       UserTemplate userTemplate =adminTemplateService.getById(id);
+//        AdminTemplate adminTemplate = adminTemplateService.getById(id);
 //        EmailUser emailUser = emailUserService.getById(id);
-        return Result.success(adminTemplate);
+        return Result.success(userTemplate);
     }
 
 }
