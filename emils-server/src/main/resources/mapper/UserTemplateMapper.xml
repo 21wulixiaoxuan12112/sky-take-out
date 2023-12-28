@@ -7,10 +7,10 @@
             <if test="id != null and id != ''">
                 and id =#{id}
             </if>
-            <if test="username != null and username != ''">
+            <if test="filename != null and filename != ''">
                 and filename like concat('%',#{filename},'%')
             </if>
-            <if test="status != null and status != ''">
+            <if test="alias != null and alias != ''">
                 and alias like concat('%',#{alias},'%')
             </if>
         </where>

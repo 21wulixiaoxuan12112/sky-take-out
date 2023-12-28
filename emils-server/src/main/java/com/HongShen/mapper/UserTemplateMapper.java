@@ -19,6 +19,8 @@ public interface UserTemplateMapper {
 
     Page<UserTemplate> pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO);
 
-    @Select("select count(*) as 'number' from emails.user_template where alias=#{alias}")
-    Integer select(String alais);
+    @Select("select count(*) as 'number' from emails.user_template where filename=#{filename}")
+    Integer select(String filename);
+
+//    Integer select(userTemplate.getFilename());
 }
