@@ -17,7 +17,7 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
     private EmailSendMapper emailSendMapper;
 
     @Override
-    public void send(String recipientEmail, String alias, String username, String password, List<String> otherParams) {
+    public void send(String recipientEmail, String alias, String username, String password, List<String> otherParams,String emailTheme) {
 
     }
 }

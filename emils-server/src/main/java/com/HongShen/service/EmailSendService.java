@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface EmailSendService {
 
-    void send(String recipientEmail, String alias, String username, String password, List<String> otherParams);
+    void send(String recipientEmail, String alias, String username, String password, List<String> otherParams,String emailTheme);
 }

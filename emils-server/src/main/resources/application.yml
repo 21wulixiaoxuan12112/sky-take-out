@@ -2,6 +2,17 @@ server:
   port: 8080
 
 spring:
+#  mail:
+#    host: smtp.zoho.com
+#    port: 587
+#    username: your_username
+#    password: your_password
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
   mvc:
       pathmatch:
         matching-strategy: ant_path_matcher
