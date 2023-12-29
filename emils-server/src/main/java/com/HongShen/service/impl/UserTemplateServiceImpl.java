@@ -37,14 +37,14 @@ public class UserTemplateServiceImpl implements UserTemplateService {
     public PageResult pageQuery(UserTemplatePageQueryDTO userTemplatePageQueryDTO) {
 //        当前登录用户id
         userTemplatePageQueryDTO.setUserid(BaseContext.getCurrentId());
-        //        开启分页
+//        开启分页
         PageHelper.startPage(userTemplatePageQueryDTO.getPage(), userTemplatePageQueryDTO.getPageSize());
         Page<UserTemplate> page = userTemplateMapper.pageQuery(userTemplatePageQueryDTO);
         long total = page.getTotal();
         List<UserTemplate> result = page.getResult();
         return new PageResult(total, result);
     }
-
+//   复制文件到指定的文件夹
     public void copyFile(MultipartFile file, String destinationPath) throws IOException {
         byte[] fileBytes = file.getBytes();
         FileUtils.writeByteArrayToFile(new File(destinationPath), fileBytes);
@@ -57,9 +57,7 @@ public class UserTemplateServiceImpl implements UserTemplateService {
 //      在指定目录下创建当前登录用户的文件夹
         String path = "emils-server/src/main/resources/template";
         String folderName = BaseContext.getCurrentId().toString();
-//        String folderName = "1";
 //       文件路径
-//        String pathName = path + "/" + folderName;
         String pathName = path + "/" + folderName;
 //      获取文件拓展名
         String originalFilename = file.getOriginalFilename(); // 获取原始文件名
@@ -170,6 +168,5 @@ public class UserTemplateServiceImpl implements UserTemplateService {
     public void deleteById(Long id) {
         Long currentId = BaseContext.getCurrentId();
         userTemplateMapper.deleteById(id,currentId);
-
     }
 }
