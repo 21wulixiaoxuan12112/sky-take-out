@@ -19,7 +19,7 @@
         select id,username,password,login_time,create_time,update_time,token,status from email_user
         <where>
             <if test="id != null and id != ''">
-                and id like concat('%',#{id},'%')
+                and id = #{id}
             </if>
             <if test="username != null and username != ''">
                 and username like concat('%',#{username},'%')
