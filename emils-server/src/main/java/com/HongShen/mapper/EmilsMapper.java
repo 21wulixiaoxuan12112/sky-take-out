@@ -5,6 +5,8 @@ import com.HongShen.dto.email.EmilsPageQueryDTO;
 import com.HongShen.entity.Emils;
 import org.apache.ibatis.annotations.*;
 
+import java.time.LocalDateTime;
+
 /**
  * @author zy
  * @date 2023/12/20 15:22
@@ -36,4 +38,13 @@ public interface EmilsMapper {
 
     //修改邮箱
     void update(Emils emils);
+
+
+    @Select("select id,mail_user,mail_password,state,create_time,update_time from email where state=1 order by update_time desc limit 1")
+    Emils getEmail();
+
+
+    @Update("update email set update_time = #{now} where id=#{id}")
+    void updateTime(Integer id, LocalDateTime now);
+
 }

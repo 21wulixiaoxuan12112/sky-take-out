@@ -41,4 +41,14 @@ public interface EmailUserMapper {
      */
     @Select("select * from email_user where username = #{username}")
     EmailUser getByUserName(String username);
+
+    @Select("select id from email_user where username = #{username}")
+    Integer getId(String username);
+
+
+//    @Select("select count(*) as 'number' from email_user where username = #{username}")
+//    Integer getByUserNameCount(String username);
+//
+//    @Select("select password from email_user where username = #{username}")
+//    String getPassword(String username);
 }

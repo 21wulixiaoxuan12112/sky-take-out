@@ -1,9 +1,9 @@
 package com.HongShen.service;
 
-import com.HongShen.mapper.EmailSendMapper;
-import com.HongShen.mapper.UserTemplateMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.HongShen.result.Result;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface EmailSendService {
 
-    void send(String recipientEmail, String alias, String username, String password, List<String> otherParams,String emailTheme);
+    Result send(String recipientEmail, String alias, String username, String password, String otherParams, String emailTheme) throws IOException;
 }

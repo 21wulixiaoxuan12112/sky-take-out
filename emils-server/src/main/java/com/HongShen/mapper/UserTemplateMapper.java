@@ -29,4 +29,11 @@ public interface UserTemplateMapper {
 
     @Update("update user_template set alias=#{alias},filepath=#{allPath} where id=#{id} and userid=#{currentId}")
     void update(Integer id, String alias, Long currentId, String allPath);
+
+    @Select("select alias from user_template where userid = #{id} and alias=#{alias}")
+    String getAlias(Integer id, String alias);
+
+    @Select("select filepath from user_template where alias = #{alias} ")
+    String getPath(String alias);
+
 }

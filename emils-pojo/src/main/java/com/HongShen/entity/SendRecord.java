@@ -49,7 +49,7 @@ public class SendRecord implements Serializable {
     private String status;
 
     @ApiModelProperty(value = "发送方用户")
-    private Long userid;
+    private String username;
 
 
 }
