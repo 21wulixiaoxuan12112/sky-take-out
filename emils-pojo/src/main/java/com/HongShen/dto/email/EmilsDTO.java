@@ -1,5 +1,6 @@
 package com.HongShen.dto.email;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -24,4 +25,10 @@ public class EmilsDTO implements Serializable {
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
+
+    @ApiModelProperty(value = "端口号")
+    private String portUmber;
+
+    @ApiModelProperty(value = "SMTP服务器地址")
+    private String smtpServeraddress;
 }

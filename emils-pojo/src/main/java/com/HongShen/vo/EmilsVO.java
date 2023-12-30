@@ -40,4 +40,10 @@ public class EmilsVO implements Serializable {
 
     @ApiModelProperty("修改时间")
     private LocalDateTime updateTime;
+
+    @ApiModelProperty(value = "端口号")
+    private String portUmber;
+
+    @ApiModelProperty(value = "SMTP服务器地址")
+    private String smtpServeraddress;
 }

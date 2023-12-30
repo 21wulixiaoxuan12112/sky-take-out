@@ -4,6 +4,7 @@ import com.HongShen.dto.email.EmilsDTO;
 import com.HongShen.dto.email.EmilsPageQueryDTO;
 import com.HongShen.entity.Emils;
 import com.HongShen.result.PageResult;
+import com.HongShen.result.Result;
 
 /**
  * @author zy
@@ -13,7 +14,7 @@ import com.HongShen.result.PageResult;
 
 public interface EmilsService{
 //    新增
-    void save(EmilsDTO emilsDTO);
+    Result save(EmilsDTO emilsDTO);
 //    分页
     PageResult pageQuery(EmilsPageQueryDTO emilsPageQueryDTO);
 //    根据id修改邮箱状态

@@ -13,14 +13,12 @@ import com.HongShen.result.Result;
 import com.HongShen.service.EmailSendService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import io.lettuce.core.ScriptOutputType;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
@@ -36,8 +34,7 @@ import java.util.Map.Entry;
  */
 @Service
 public class EmailSendServiceServiceImpl implements EmailSendService {
-    //    @Autowired
-//    private EmailSendMapper emailSendMapper;
+
     @Autowired
     private EmailUserMapper emailUserMapper;
     @Autowired
@@ -143,8 +140,8 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
         //修改查询到的邮箱 修改使用时间为现在
 //       update email set update_time = #{update_time} where id=#{id}
         LocalDateTime now = LocalDateTime.now();
-        System.out.println(email.getId());
-        System.out.println(now);
+        System.out.println("邮箱id" + email.getId());
+//        System.out.println(now);
         emilsMapper.updateTime(email.getId(), now);
         // //发送邮件  如果发送失败则修改邮箱状态为死亡 并且重新获取一条邮箱发送
 
@@ -184,11 +181,11 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
             sendRecordMapper.save(sendRecord);
             System.out.println(sendRecord);
             System.out.println("Email sent successfully.");
-//获取发送送状态，若失败则重新发送
+//          获取发送送状态，若失败则重新发送
 //            if (sendRecord.getStatus() != 1) {
 //
 //            }
-
+//            email
         } catch (MessagingException e) {
             status = "0";
             email.setState(0);

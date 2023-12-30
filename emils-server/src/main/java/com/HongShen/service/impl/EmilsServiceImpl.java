@@ -1,12 +1,14 @@
 package com.HongShen.service.impl;
 
+import com.HongShen.constant.MessageConstant;
+import com.HongShen.entity.Emils;
+import com.HongShen.result.Result;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.HongShen.constant.PasswordConstant;
 import com.HongShen.constant.StatusConstant;
 import com.HongShen.dto.email.EmilsDTO;
 import com.HongShen.dto.email.EmilsPageQueryDTO;
-import com.HongShen.entity.Emils;
 import com.HongShen.mapper.EmilsMapper;
 import com.HongShen.result.PageResult;
 import com.HongShen.service.EmilsService;
@@ -30,21 +32,25 @@ public class EmilsServiceImpl implements EmilsService {
     /*
      * 新增*/
     @Override
-    public void save(EmilsDTO emilsDTO) {
+    public Result save(EmilsDTO emilsDTO) {
         Emils emils = new Emils();
-
-        BeanUtils.copyProperties(emilsDTO, emils);
 //
-        emils.setState(StatusConstant.ENABLE);
+//        邮箱名字相同且smtp相同则不可以新增
+//        select count(*) from emils  where mail_user=#{mailUser} and smtp_serveraddress=#{smtpServeraddress}
+        Integer number = emilsMapper.getNumber(emilsDTO.getMailUser(), emilsDTO.getSmtpServeraddress());
+        if (number >0) {
+            return Result.error("当前邮箱名/SMTP服务器地址已存在！");
+        }
+        BeanUtils.copyProperties(emilsDTO, emils);
 
-        emils.setMailPassword(PasswordConstant.DEFAULT_PASSWORD);
+        emils.setState(StatusConstant.ENABLE);
 
         emils.setCreateTime(LocalDateTime.now());
 
         emils.setUpdateTime(LocalDateTime.now());
 
         emilsMapper.insert(emils);
-
+        return Result.success("新建邮箱成功！");
     }
 
     //分页
