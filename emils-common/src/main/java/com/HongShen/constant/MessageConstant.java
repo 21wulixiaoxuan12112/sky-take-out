@@ -28,4 +28,5 @@ public class MessageConstant {
     public static final String TEMPLATE_NOTFOUND = "当前选择模板不存在";
     public static final String TEMPLATE_READNULL ="模板内容解析失败，内容为空！" ;
     public static final String THEME_NULL = "模板主题为空！";
+    public static final String EMAIL_SEND_FAILED = "邮件发送失败，即将切换邮箱重新发送！";
 }

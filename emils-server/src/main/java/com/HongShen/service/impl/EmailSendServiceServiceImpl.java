@@ -20,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
@@ -96,7 +97,7 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
         String content = new String(fileContent);
 //        System.out.println("模板内容：" + content);
         //存在继续判断otherParams是否为空
-        if (otherParams == null) {
+        if (emailTheme.isEmpty()) {
             throw new AccountNotFoundException(MessageConstant.THEME_NULL);
         }
 
@@ -117,7 +118,25 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
             String value = (String) entry.getValue();
             content = content.replace(key, value);
         }
+//        调用方法去发送邮件
+        String status = getResult(recipientEmail, alias, username, emailTheme, escapedHtml);
+//        如果发送状态为1，则发送成功
+        if (status == "1") {
+            return Result.success("发送成功");
+        } else {
+//          反之亦然
+            status = getResult(recipientEmail, alias, username, emailTheme, escapedHtml);
+            if (status == "1") {
+                return Result.success();
+            } else {
+                return Result.error("失败");
+            }
+        }
 
+
+    }
+
+    private String getResult(String recipientEmail, String alias, String username, String emailTheme, String escapedHtml) {
         //去邮箱表里面查询一条使用时间最老的一条数据
         Emils email = emilsMapper.getEmail();
         System.out.println(email);
@@ -131,7 +150,7 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
 
 
         String username2 = email.getMailUser(); // 发件人邮箱
-        System.out.println(username2);
+        System.out.println("发送人邮箱：" + username2);
         String password2 = email.getMailPassword(); // 发件人邮箱密码
 
         Properties props = new Properties();
@@ -146,14 +165,14 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
             }
         });
         SendRecord sendRecord = new SendRecord();
+        String status = "1";
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(email.getMailUser())); // 设置发件人
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail)); // 设置收件人
             message.setSubject(emailTheme); // 设置邮件主题
             message.setText(escapedHtml); // 设置邮件内容
-//            System.out.println(escapedHtml);
-//            System.out.println(emailTheme);
+
 
             Transport.send(message); // 发送邮件
             sendRecord.setReceiveemail(recipientEmail);
@@ -169,11 +188,23 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
 //            if (sendRecord.getStatus() != 1) {
 //
 //            }
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-//        修改状态
 
-        return Result.success();
+        } catch (MessagingException e) {
+            status = "0";
+            email.setState(0);
+            emilsMapper.startOrStop(email);
+            sendRecord.setReceiveemail(recipientEmail);
+            sendRecord.setAlias(alias);
+            sendRecord.setSendemail(email.getMailUser());
+            sendRecord.setSendtime(LocalDateTime.now());
+            sendRecord.setStatus("0");
+            sendRecord.setUsername(username);
+            sendRecordMapper.save(sendRecord);
+            System.out.println("发送邮箱：" + email);
+//        修改状态
+//            throw new AccountNotFoundException(MessageConstant.EMAIL_SEND_FAILED);
+
+        }
+        return status;
     }
 }
