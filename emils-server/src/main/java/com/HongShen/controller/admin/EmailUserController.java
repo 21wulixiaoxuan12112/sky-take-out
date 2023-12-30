@@ -35,8 +35,8 @@ public class EmailUserController {
     @ApiOperation("新增会员")
     public Result saveUser(@RequestBody EmilsUserDTO emilsUserDTO) {
         log.info("新增会员：{}", emilsUserDTO);
-        emailUserService.save(emilsUserDTO);
-        return Result.success();
+        return emailUserService.save(emilsUserDTO);
+
     }
 
     //    用户分页
@@ -62,6 +62,7 @@ public class EmailUserController {
         emailUserService.deleteById(id);
         return Result.success();
     }
+
     @PutMapping
     @ApiOperation("编辑会员信息")
     public Result updateUser(@RequestBody EmilsUserDTO emilsUserDTO) {
@@ -69,6 +70,7 @@ public class EmailUserController {
         emailUserService.update(emilsUserDTO);
         return Result.success();
     }
+
     @PostMapping("/state/{status}")
     @ApiOperation("启用禁用会员账号")
     public Result startOrStop(@PathVariable Integer status, Integer id) {

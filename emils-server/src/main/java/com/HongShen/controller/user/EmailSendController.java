@@ -16,9 +16,6 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
-import java.util.List;
-import java.util.Properties;
-
 /**
  * @author zy
  * @date 2023/12/29 16:53

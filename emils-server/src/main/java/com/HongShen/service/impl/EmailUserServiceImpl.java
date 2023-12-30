@@ -11,6 +11,7 @@ import com.HongShen.exception.AccountNotFoundException;
 import com.HongShen.exception.PasswordErrorException;
 import com.HongShen.mapper.EmailUserMapper;
 import com.HongShen.result.PageResult;
+import com.HongShen.result.Result;
 import com.HongShen.service.EmailUserService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -42,8 +43,14 @@ public class EmailUserServiceImpl implements EmailUserService {
     }
 
     @Override
-    public void save(EmilsUserDTO emilsUserDTO) {
+    public Result save(EmilsUserDTO emilsUserDTO) {
         EmailUser emailUser = new EmailUser();
+//        搜索当前用户的账号是否存在
+//        select count(*) from email_user where username =#{username}
+        Integer number = emailUserMapper.getNumber(emilsUserDTO.getUsername());
+        if (number > 0) {
+            return Result.error("当前用户已经创建！");
+        }
         BeanUtils.copyProperties(emilsUserDTO, emailUser);
 //        Spring Security加盐
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -55,6 +62,7 @@ public class EmailUserServiceImpl implements EmailUserService {
 //        emailUser.setUpdatetime(LocalDateTime.now());
         emailUser.setStatus(1);
         emailUserMapper.insert(emailUser);
+        return Result.success("新建用户成功！");
     }
 
     @Override

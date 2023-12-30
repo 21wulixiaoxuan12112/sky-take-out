@@ -5,6 +5,7 @@ import com.HongShen.dto.Login.EmilsUserLoginDTO;
 import com.HongShen.dto.user.EmilsUserPageQueryDTO;
 import com.HongShen.entity.EmailUser;
 import com.HongShen.result.PageResult;
+import com.HongShen.result.Result;
 
 /**
  * <p>
@@ -16,7 +17,7 @@ import com.HongShen.result.PageResult;
  */
 public interface EmailUserService {
 
-    void save(EmilsUserDTO emilsUserDTO);
+    Result save(EmilsUserDTO emilsUserDTO);
 
     PageResult pageQuery(EmilsUserPageQueryDTO emilsUserPageQueryDTO);
 

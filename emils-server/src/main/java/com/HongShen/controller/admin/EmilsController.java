@@ -39,8 +39,7 @@ public class EmilsController {
     @ApiOperation("新增邮箱")
     public Result save(@RequestBody EmilsDTO emilsDTO) {
         log.info("新增邮箱：{}", emilsDTO);
-        emilsService.save(emilsDTO);
-        return Result.success();
+        return emilsService.save(emilsDTO);
     }
 
     /**
@@ -75,7 +74,7 @@ public class EmilsController {
 
     /**
      * 反显
-     // @param id
+     * // @param id
      *
      * @return
      */
