@@ -32,7 +32,7 @@ public class UserTemplateController {
     public Result saveUserTemplate(@RequestParam("file") MultipartFile file, String alias) throws IOException {
         log.info("新增模板：{}", file);
         if (!file.isEmpty()) {
-            return Result.success(userTemplateService.set(file, alias));
+            return userTemplateService.set(file, alias);
         } else {
             return Result.error("文件为空，上传失败！");
         }
