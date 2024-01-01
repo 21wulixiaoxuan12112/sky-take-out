@@ -75,6 +75,7 @@ public class UserTemplateServiceImpl implements UserTemplateService {
         if (!directory.exists()) {
             directory.mkdirs();
         }
+//
         File newFolder = new File(directory, folderName);
         boolean created = newFolder.mkdir();
         if (!created) {
