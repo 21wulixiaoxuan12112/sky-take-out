@@ -120,6 +120,8 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
                 String value = (String) entry.getValue();
                 content = content.replace(key, value);
             }
+
+
         }
 
 //        调用方法去发送邮件
