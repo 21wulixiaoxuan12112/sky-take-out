@@ -27,6 +27,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
 
 /**
  * @author zy
@@ -46,8 +47,15 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
 
     @Override
     public Result send(String recipientEmail, String alias, String username, String password, String otherParams, String emailTheme) throws IOException {
-//        System.out.println("username"+username);
-//        System.out.println("otherParams"+otherParams);
+        // 验证收件邮件地址格式是否正确
+        Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\." +
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+(?:[a-z" +
+                "A-Z]{2,7})$");
+        if (!emailPattern.matcher(recipientEmail).matches()) {
+            return Result.error("无效的电子邮件地址");
+        }
+//
         //根据username和password判断用户是否存在
         //1、根据用户名查询数据库中的数据
         EmailUser emailUser = emailUserMapper.getByUserName(username);
@@ -57,7 +65,6 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
             throw new AccountNotFoundException(MessageConstant.ACCOUNT_NOT_FOUND);
 //            return Result.error("当前用户不存在!");
         }
-
         //密码比对
 //        1.获取数据库中加盐生成的密码，
         String password1 = emailUser.getPassword();
@@ -100,33 +107,33 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
 
         //不为空则根据参数去替换模板文件内容
 //        把前端传来的数据进行html实体转义，转义结果为json字符串
-        ObjectMapper mapper = new ObjectMapper();
-//        System.out.println("ccccc"+otherParams);
-
-        String escapedHtml = StringEscapeUtils.unescapeHtml4(String.valueOf(otherParams));
-//        System.out.println("json字符串：" + escapedHtml);
+        String escapedHtml = new String();
+        if(otherParams != null){
+           escapedHtml = StringEscapeUtils.unescapeHtml4(String.valueOf(otherParams));
 //          再将json字符串转换成map键值对
-        // 将JSON字符串转换为Map<String, Object>
-        Gson gson = new Gson();
-        Map<String, Object> map = gson.fromJson(escapedHtml, Map.class);
+            // 将JSON字符串转换为Map<String, Object>
+            Gson gson = new Gson();
+            Map<String, Object> map = gson.fromJson(escapedHtml, Map.class);
 //        System.out.println(map);
-        for (Entry<String, Object> entry : map.entrySet()) {
-            String key = entry.getKey();
-            String value = (String) entry.getValue();
-            content = content.replace(key, value);
+            for (Entry<String, Object> entry : map.entrySet()) {
+                String key = entry.getKey();
+                String value = (String) entry.getValue();
+                content = content.replace(key, value);
+            }
         }
+
 //        调用方法去发送邮件
         String status = getResult(recipientEmail, alias, username, emailTheme, escapedHtml);
 //        如果发送状态为1，则发送成功
         if (status == "1") {
-            return Result.success("发送成功");
+            return Result.success("第一次发送成功");
         } else {
-//          反之亦然
+//          反之亦然,再从数据库里去一条邮箱数据去发送邮箱。所以如果第一次失败总共发送两次。第二次也失败的话就不再发送。
             status = getResult(recipientEmail, alias, username, emailTheme, escapedHtml);
             if (status == "1") {
-                return Result.success();
+                return Result.success("第二次发送成功！");
             } else {
-                return Result.error("失败");
+                return Result.error("第二次发送失败");
             }
         }
 
@@ -150,10 +157,12 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
         System.out.println("发送人邮箱：" + username2);
         String password2 = email.getMailPassword(); // 发件人邮箱密码
 
+
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.zoho.com");
+        String smtpServeraddress = email.getSmtpServeraddress();
+        props.put("mail.smtp.host", smtpServeraddress);
         props.put("mail.smtp.port", "587");
 
         Session session = Session.getInstance(props, new Authenticator() {
@@ -162,7 +171,7 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
             }
         });
         SendRecord sendRecord = new SendRecord();
-        String status = "1";
+        String status = null;
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(email.getMailUser())); // 设置发件人
@@ -186,7 +195,11 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
 //
 //            }
 //            email
+           status = "1";
+           return status;
         } catch (MessagingException e) {
+//            发送失败的处理,在发送记录表当中记录失败原因，在邮箱表里修改邮箱状态为0
+//          修改状态
             status = "0";
             email.setState(0);
             emilsMapper.startOrStop(email);
@@ -198,10 +211,7 @@ public class EmailSendServiceServiceImpl implements EmailSendService {
             sendRecord.setUsername(username);
             sendRecordMapper.save(sendRecord);
             System.out.println("发送邮箱：" + email);
-//        修改状态
-//            throw new AccountNotFoundException(MessageConstant.EMAIL_SEND_FAILED);
-
+            return status;
         }
-        return status;
     }
 }

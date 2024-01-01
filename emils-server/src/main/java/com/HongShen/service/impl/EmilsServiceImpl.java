@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @author zy
@@ -29,6 +30,12 @@ public class EmilsServiceImpl implements EmilsService {
     @Autowired
     private EmilsMapper emilsMapper;
 
+    //验证邮箱格式
+    private static boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        return email.matches(emailRegex);
+    }
+
     /*
      * 新增*/
     @Override
@@ -38,8 +45,11 @@ public class EmilsServiceImpl implements EmilsService {
 //        邮箱名字相同且smtp相同则不可以新增
 //        select count(*) from emils  where mail_user=#{mailUser} and smtp_serveraddress=#{smtpServeraddress}
         Integer number = emilsMapper.getNumber(emilsDTO.getMailUser(), emilsDTO.getSmtpServeraddress());
-        if (number >0) {
+        if (number > 0) {
             return Result.error("当前邮箱名/SMTP服务器地址已存在！");
+        }
+        if (!isValidEmail(emilsDTO.getMailUser())) {
+            return Result.error("邮箱格式不正确!");
         }
         BeanUtils.copyProperties(emilsDTO, emils);
 

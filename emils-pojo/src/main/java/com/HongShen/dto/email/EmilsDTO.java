@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @ApiModel
-public class EmilsDTO implements Serializable {
+public class EmilsDTO implements Serializable{
     private Integer id;
 
     private String mailUser;
