@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/emils-common/emils-common.iml" filepath="$PROJECT_DIR$/emils-common/emils-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/emils-pojo/emils-pojo.iml" filepath="$PROJECT_DIR$/emils-pojo/emils-pojo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/emils-server/emils-server.iml" filepath="$PROJECT_DIR$/emils-server/emils-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/emils-system.iml" filepath="$PROJECT_DIR$/emils-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TK-common/TK-common.iml" filepath="$PROJECT_DIR$/TK-common/TK-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TK-pojo/TK-pojo.iml" filepath="$PROJECT_DIR$/TK-pojo/TK-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TK-server/TK-server.iml" filepath="$PROJECT_DIR$/TK-server/TK-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TK-system.iml" filepath="$PROJECT_DIR$/TK-system.iml" />
     </modules>
   </component>
 </project>
