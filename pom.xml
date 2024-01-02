@@ -10,13 +10,13 @@
         <version>2.7.3</version>
     </parent>
     <groupId>com.sky</groupId>
-    <artifactId>emils-system</artifactId>
+    <artifactId>TK-system</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>emils-common</module>
-        <module>emils-pojo</module>
-        <module>emils-server</module>
+        <module>TK-common</module>
+        <module>TK-pojo</module>
+        <module>TK-server</module>
     </modules>
     <properties>
         <mybatis.spring>2.2.0</mybatis.spring>

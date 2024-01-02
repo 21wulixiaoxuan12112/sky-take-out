@@ -7,23 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="emils-pojo" />
-        <module name="emils-common" />
-        <module name="emils-server" />
+        <module name="TK-common" />
+        <module name="TK-server" />
+        <module name="TK-pojo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="emils-common" target="11" />
-      <module name="emils-pojo" target="11" />
-      <module name="emils-server" target="11" />
-      <module name="emils-system" target="11" />
+      <module name="TK-common" target="11" />
+      <module name="TK-pojo" target="11" />
+      <module name="TK-server" target="11" />
+      <module name="TK-system" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="emils-common" options="-parameters" />
-      <module name="emils-pojo" options="-parameters" />
-      <module name="emils-server" options="-parameters" />
+      <module name="TK-common" options="-parameters" />
+      <module name="TK-pojo" options="-parameters" />
+      <module name="TK-server" options="-parameters" />
     </option>
   </component>
 </project>
